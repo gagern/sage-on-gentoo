@@ -3,7 +3,7 @@
 set -e
 
 # change to root of sage tree
-cd "$(dirname "$0")/.."
+cd "$(portageq get_repo_path / sage-on-gentoo)"
 
 IFS=$'\n'
 pre=( $(find dev-lang/python -type f | \
@@ -31,20 +31,19 @@ for dst in dev-lang/python/*.ebuild; do
 
 	# add patch for Sage
 	patch --quiet --no-backup-if-mismatch -l "${dst}" <<-'EOF'
---- python.ebuild
-+++ python.ebuild
-@@ -81,3 +80,10 @@
-	    EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
+		--- python.ebuild
+		+++ python.ebuild
+		@@ -81,3 +80,10 @@
+		    EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
 
-	+	if use sage; then
-	+		# patch pickle for sage http://bugs.python.org/issue7689
-	+		epatch "${FILESDIR}/dynamic_class_copyreg_py.patch"
-	+		EPATCH_OPTS="${EPATCH_OPTS} -l" \
-	+			epatch "${FILESDIR}/dynamic_class_copyreg_c.patch"
-	+	fi
-	+
-	    sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
-
+		+	if use sage; then
+		+		# patch pickle for sage http://bugs.python.org/issue7689
+		+		epatch "${FILESDIR}/dynamic_class_copyreg_py.patch"
+		+		EPATCH_OPTS="${EPATCH_OPTS} -l" \
+		+			epatch "${FILESDIR}/dynamic_class_copyreg_c.patch"
+		+	fi
+		+
+		    sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 	EOF
 
 	# add "sage" USE flag
@@ -63,3 +62,5 @@ done
 # add description for sage USE flag
 sed -i 's:</use>:\t<flag name="sage">Apply fix for issue7689'\
 ' required by sage.</flag>\n</use>:' dev-lang/python/metadata.xml
+
+ebuild "${lastKeptEbuild}" manifest
