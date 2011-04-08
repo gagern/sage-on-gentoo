@@ -1,24 +1,38 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.5-r3.ebuild,v 1.13 2011/04/05 06:01:55 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.1-r1.ebuild,v 1.8 2011/04/05 06:01:55 ulm Exp $
 
 EAPI="2"
+WANT_AUTOMAKE="none"
 
-inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs
+inherit autotools eutils flag-o-matic multilib python toolchain-funcs
 
-MY_P="Python-${PV}"
+if [[ "${PV}" == *_pre* ]]; then
+	inherit subversion
 
-PATCHSET_REVISION="5"
+	ESVN_PROJECT="python"
+	ESVN_REPO_URI="http://svn.python.org/projects/python/branches/release27-maint"
+	ESVN_REVISION=""
+else
+	MY_PV="${PV%_p*}"
+	MY_P="Python-${MY_PV}"
+fi
+
+PATCHSET_REVISION="1"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
-SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
-	mirror://gentoo/python-gentoo-patches-${PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
+if [[ "${PV}" == *_pre* ]]; then
+	SRC_URI=""
+else
+	SRC_URI="http://www.python.org/ftp/python/${MY_PV}/${MY_P}.tar.bz2
+		mirror://gentoo/python-gentoo-patches-${MY_PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
+fi
 
 LICENSE="PSF-2.2"
-SLOT="2.6"
+SLOT="2.7"
 PYTHON_ABI="${SLOT}"
-KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~sparc-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha amd64 arm hppa ~ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc ~x86 ~sparc-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
 IUSE="sage -berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
 RDEPEND=">=app-admin/eselect-python-20091230
@@ -27,6 +41,7 @@ RDEPEND=">=app-admin/eselect-python-20091230
 		virtual/libintl
 		!build? (
 			berkdb? ( || (
+				sys-libs/db:4.8
 				sys-libs/db:4.7
 				sys-libs/db:4.6
 				sys-libs/db:4.5
@@ -39,19 +54,24 @@ RDEPEND=">=app-admin/eselect-python-20091230
 				>=sys-libs/ncurses-5.2
 				readline? ( >=sys-libs/readline-4.1 )
 			)
-			sqlite? ( >=dev-db/sqlite-3 )
+			sqlite? ( >=dev-db/sqlite-3.3.8:3[extensions] )
 			ssl? ( dev-libs/openssl )
 			tk? ( >=dev-lang/tk-8.0 )
 			xml? ( >=dev-libs/expat-2 )
 		)
-		doc? ( dev-python/python-docs:${SLOT} )"
+		!!<sys-apps/portage-2.1.9"
 DEPEND="${RDEPEND}
+		$([[ "${PV}" == *_pre* ]] && echo "=${CATEGORY}/${PN}-${PV%%.*}*")
 		dev-util/pkgconfig
+		$([[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+_pre ]] && echo "doc? ( dev-python/sphinx )")
 		!sys-devel/gcc[libffi]"
-RDEPEND+=" !build? ( app-misc/mime-types )"
+RDEPEND+=" !build? ( app-misc/mime-types )
+		$([[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+_pre ]] || echo "doc? ( dev-python/python-docs:${SLOT} )")"
 PDEPEND="app-admin/python-updater"
 
-S="${WORKDIR}/${MY_P}"
+if [[ "${PV}" != *_pre* ]]; then
+	S="${WORKDIR}/${MY_P}"
+fi
 
 pkg_setup() {
 	python_pkg_setup
@@ -69,14 +89,33 @@ src_prepare() {
 	rm -fr Modules/_ctypes/libffi*
 	rm -fr Modules/zlib
 
-	if ! tc-is-cross-compiler; then
-		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
+	if [[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+_pre ]]; then
+		if grep -Eq '#define PY_RELEASE_LEVEL[[:space:]]+PY_RELEASE_LEVEL_FINAL' Include/patchlevel.h; then
+			# Update micro version, release level and version string.
+			local micro_version="${PV%_pre*}"
+			micro_version="${micro_version##*.}"
+			local version_string="${PV%.*}.$((${micro_version} - 1))+"
+			sed \
+				-e "s/\(#define PY_MICRO_VERSION[[:space:]]\+\)[^[:space:]]\+/\1${micro_version}/" \
+				-e "s/\(#define PY_RELEASE_LEVEL[[:space:]]\+\)[^[:space:]]\+/\1PY_RELEASE_LEVEL_ALPHA/" \
+				-e "s/\(#define PY_VERSION[[:space:]]\+\"\)[^\"]\+\(\"\)/\1${version_string}\2/" \
+				-i Include/patchlevel.h || die "sed failed"
+		fi
 	fi
 
-	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
+	local excluded_patches
+	if ! tc-is-cross-compiler; then
+		excluded_patches="*_all_crosscompile.patch"
+	fi
 
-	# Avoid regeneration, which would not change contents of files.
-	touch Include/Python-ast.h Python/Python-ast.c
+	local patchset_dir
+	if [[ "${PV}" == *_pre* ]]; then
+		patchset_dir="${FILESDIR}/${SLOT}-${PATCHSET_REVISION}"
+	else
+		patchset_dir="${WORKDIR}/${MY_PV}"
+	fi
+
+	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" epatch "${patchset_dir}"
 
 	if use sage; then
 		# patch pickle for sage http://bugs.python.org/issue7689
@@ -89,30 +128,31 @@ src_prepare() {
 		Lib/distutils/command/install.py \
 		Lib/distutils/sysconfig.py \
 		Lib/site.py \
+		Lib/sysconfig.py \
+		Lib/test/test_site.py \
 		Makefile.pre.in \
 		Modules/Setup.dist \
 		Modules/getpath.c \
 		setup.py || die "sed failed to replace @@GENTOO_LIBDIR@@"
-
-	# Fix os.utime() on hppa. utimes it not supported but unfortunately reported as working - gmsoft (22 May 04)
-	# PLEASE LEAVE THIS FIX FOR NEXT VERSIONS AS IT'S A CRITICAL FIX !!!
-	[[ "${ARCH}" == "hppa" ]] && sed -e "s/utimes //" -i "${S}/configure"
 
 	if ! use wininst; then
 		# Remove Microsoft Windows executables.
 		rm Lib/distutils/command/wininst-*.exe
 	fi
 
-	# Fix OtherFileTests.testStdin() not to assume
-	# that stdin is a tty for bug #248081.
-	sed -e "s:'osf1V5':'osf1V5' and sys.stdin.isatty():" -i Lib/test/test_file.py || die "sed failed"
+	# Support versions of Autoconf other than 2.65.
+	sed -e "/version_required(2\.65)/d" -i configure.in || die "sed failed"
+
+	if [[ "${PV}" == *_pre* ]]; then
+		sed -e "s/\(-DSVNVERSION=\).*\( -o\)/\1\\\\\"${ESVN_REVISION}\\\\\"\2/" -i Makefile.pre.in || die "sed failed"
+	fi
 
 	eautoreconf
 }
 
 src_configure() {
-	# Disable extraneous modules with extra dependencies.
 	if use build; then
+		# Disable extraneous modules with extra dependencies.
 		export PYTHON_DISABLE_MODULES="dbm _bsddb gdbm _curses _curses_panel readline _sqlite3 _tkinter _elementtree pyexpat"
 		export PYTHON_DISABLE_SSL="1"
 	else
@@ -171,10 +211,18 @@ src_configure() {
 	# Export CXX so it ends up in /usr/lib/python2.X/config/Makefile.
 	tc-export CXX
 
-	# Set LDFLAGS so we link modules with -lpython2.6 correctly.
-	# Needed on FreeBSD unless Python 2.6 is already installed.
+	# Set LDFLAGS so we link modules with -lpython2.7 correctly.
+	# Needed on FreeBSD unless Python 2.7 is already installed.
 	# Please query BSD team before removing this!
 	append-ldflags "-L."
+
+	local dbmliborder
+	if use gdbm; then
+		dbmliborder+="${dbmliborder:+:}gdbm"
+	fi
+	if use berkdb; then
+		dbmliborder+="${dbmliborder:+:}bdb"
+	fi
 
 	OPT="" econf \
 		--with-fpectl \
@@ -184,8 +232,15 @@ src_configure() {
 		$(use wide-unicode && echo "--enable-unicode=ucs4" || echo "--enable-unicode=ucs2") \
 		--infodir='${prefix}/share/info' \
 		--mandir='${prefix}/share/man' \
+		--with-dbmliborder="${dbmliborder}" \
 		--with-libc="" \
+		--enable-loadable-sqlite-extensions \
+		--with-system-expat \
 		--with-system-ffi
+}
+
+src_compile() {
+	emake EPYTHON="python${PV%%.*}" || die "emake failed"
 }
 
 src_test() {
@@ -200,17 +255,14 @@ src_test() {
 	python_enable_pyc
 
 	# Skip failing tests.
-	local skip_tests="distutils httpservers minidom pyexpat sax tcl"
-
-	# test_ctypes fails with PAX kernel (bug #234498).
-	host-is-pax && skip_tests+=" ctypes"
+	local skip_tests="distutils gdb minidom pyexpat sax"
 
 	for test in ${skip_tests}; do
 		mv "${S}/Lib/test/test_${test}.py" "${T}"
 	done
 
 	# Rerun failed tests in verbose mode (regrtest -w).
-	EXTRATESTOPTS="-w" emake test
+	emake test EXTRATESTOPTS="-w" < /dev/tty
 	local result="$?"
 
 	for test in ${skip_tests}; do
@@ -239,13 +291,14 @@ src_install() {
 	emake DESTDIR="${D}" altinstall maninstall || die "emake altinstall maninstall failed"
 	python_clean_installation_image -q
 
+	sed -e "s/\(LDFLAGS=\).*/\1/" -i "${ED}$(python_get_libdir)/config/Makefile" || die "sed failed"
+
 	mv "${ED}usr/bin/python${SLOT}-config" "${ED}usr/bin/python-config-${SLOT}"
 
 	# Fix collisions between different slots of Python.
 	mv "${ED}usr/bin/2to3" "${ED}usr/bin/2to3-${SLOT}"
 	mv "${ED}usr/bin/pydoc" "${ED}usr/bin/pydoc${SLOT}"
 	mv "${ED}usr/bin/idle" "${ED}usr/bin/idle${SLOT}"
-	mv "${ED}usr/share/man/man1/python.1" "${ED}usr/share/man/man1/python${SLOT}.1"
 	rm -f "${ED}usr/bin/smtpd.py"
 
 	if use build; then
@@ -274,19 +327,21 @@ src_install() {
 }
 
 pkg_preinst() {
-	if has_version "<${CATEGORY}/${PN}-${SLOT}" && ! has_version "${CATEGORY}/${PN}:2.6" && ! has_version "${CATEGORY}/${PN}:2.7"; then
+	if has_version "<${CATEGORY}/${PN}-${SLOT}" && ! has_version "${CATEGORY}/${PN}:2.7"; then
 		python_updater_warning="1"
 	fi
 }
 
 eselect_python_update() {
-	local eselect_python_options
-	[[ "$(eselect python show)" == "python2."* ]] && eselect_python_options="--python2"
+	[[ -z "${EROOT}" ]] && EROOT="${ROOT%/}${EPREFIX}/"
 
-	# Create python2 symlink.
-	eselect python update --python2 > /dev/null
+	if [[ -z "$(eselect python show)" || ! -f "${EROOT}usr/bin/$(eselect python show)" ]]; then
+		eselect python update
+	fi
 
-	eselect python update ${eselect_python_options}
+	if [[ -z "$(eselect python show --python${PV%%.*})" || ! -f "${EROOT}usr/bin/$(eselect python show --python${PV%%.*})" ]]; then
+		eselect python update --python${PV%%.*}
+	fi
 }
 
 pkg_postinst() {

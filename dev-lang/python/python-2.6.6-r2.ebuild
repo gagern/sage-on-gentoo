@@ -1,24 +1,24 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.1.ebuild,v 1.3 2010/12/01 19:53:20 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.6-r2.ebuild,v 1.8 2011/04/05 06:01:55 ulm Exp $
 
 EAPI="2"
 WANT_AUTOMAKE="none"
 
-inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs
+inherit autotools eutils flag-o-matic multilib python toolchain-funcs
 
 if [[ "${PV}" == *_pre* ]]; then
 	inherit subversion
 
 	ESVN_PROJECT="python"
-	ESVN_REPO_URI="http://svn.python.org/projects/python/branches/release27-maint"
+	ESVN_REPO_URI="http://svn.python.org/projects/python/branches/release26-maint"
 	ESVN_REVISION=""
 else
 	MY_PV="${PV%_p*}"
 	MY_P="Python-${MY_PV}"
 fi
 
-PATCHSET_REVISION="0"
+PATCHSET_REVISION="2"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
@@ -30,9 +30,9 @@ else
 fi
 
 LICENSE="PSF-2.2"
-SLOT="2.7"
+SLOT="2.6"
 PYTHON_ABI="${SLOT}"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
+KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~sparc-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
 IUSE="sage -berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
 RDEPEND=">=app-admin/eselect-python-20091230
@@ -41,7 +41,6 @@ RDEPEND=">=app-admin/eselect-python-20091230
 		virtual/libintl
 		!build? (
 			berkdb? ( || (
-				sys-libs/db:4.8
 				sys-libs/db:4.7
 				sys-libs/db:4.6
 				sys-libs/db:4.5
@@ -54,7 +53,7 @@ RDEPEND=">=app-admin/eselect-python-20091230
 				>=sys-libs/ncurses-5.2
 				readline? ( >=sys-libs/readline-4.1 )
 			)
-			sqlite? ( >=dev-db/sqlite-3.3.8:3[extensions] )
+			sqlite? ( >=dev-db/sqlite-3 )
 			ssl? ( dev-libs/openssl )
 			tk? ( >=dev-lang/tk-8.0 )
 			xml? ( >=dev-libs/expat-2 )
@@ -68,8 +67,6 @@ DEPEND="${RDEPEND}
 RDEPEND+=" !build? ( app-misc/mime-types )
 		$([[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+_pre ]] || echo "doc? ( dev-python/python-docs:${SLOT} )")"
 PDEPEND="app-admin/python-updater"
-
-PROVIDE="virtual/python"
 
 if [[ "${PV}" != *_pre* ]]; then
 	S="${WORKDIR}/${MY_P}"
@@ -130,8 +127,6 @@ src_prepare() {
 		Lib/distutils/command/install.py \
 		Lib/distutils/sysconfig.py \
 		Lib/site.py \
-		Lib/sysconfig.py \
-		Lib/test/test_site.py \
 		Makefile.pre.in \
 		Modules/Setup.dist \
 		Modules/getpath.c \
@@ -140,17 +135,6 @@ src_prepare() {
 	if ! use wininst; then
 		# Remove Microsoft Windows executables.
 		rm Lib/distutils/command/wininst-*.exe
-	fi
-
-	# Fix OtherFileTests.testStdin() not to assume
-	# that stdin is a tty for bug #248081.
-	sed -e "s:'osf1V5':'osf1V5' and sys.stdin.isatty():" -i Lib/test/test_file.py || die "sed failed"
-
-	# Support versions of Autoconf other than 2.65.
-	sed -e "/version_required(2\.65)/d" -i configure.in || die "sed failed"
-
-	if [[ "${PV}" == *_pre* ]]; then
-		sed -e "s/\(-DSVNVERSION=\).*\( -o\)/\1\\\\\"${ESVN_REVISION}\\\\\"\2/" -i Makefile.pre.in || die "sed failed"
 	fi
 
 	eautoreconf
@@ -217,18 +201,10 @@ src_configure() {
 	# Export CXX so it ends up in /usr/lib/python2.X/config/Makefile.
 	tc-export CXX
 
-	# Set LDFLAGS so we link modules with -lpython2.7 correctly.
-	# Needed on FreeBSD unless Python 2.7 is already installed.
+	# Set LDFLAGS so we link modules with -lpython2.6 correctly.
+	# Needed on FreeBSD unless Python 2.6 is already installed.
 	# Please query BSD team before removing this!
 	append-ldflags "-L."
-
-	local dbmliborder
-	if use gdbm; then
-		dbmliborder+="${dbmliborder:+:}gdbm"
-	fi
-	if use berkdb; then
-		dbmliborder+="${dbmliborder:+:}bdb"
-	fi
 
 	OPT="" econf \
 		--with-fpectl \
@@ -238,10 +214,7 @@ src_configure() {
 		$(use wide-unicode && echo "--enable-unicode=ucs4" || echo "--enable-unicode=ucs2") \
 		--infodir='${prefix}/share/info' \
 		--mandir='${prefix}/share/man' \
-		--with-dbmliborder="${dbmliborder}" \
 		--with-libc="" \
-		--enable-loadable-sqlite-extensions \
-		--with-system-expat \
 		--with-system-ffi
 }
 
@@ -261,17 +234,14 @@ src_test() {
 	python_enable_pyc
 
 	# Skip failing tests.
-	local skip_tests="distutils gdb minidom pyexpat sax"
-
-	# test_ctypes fails with PAX kernel (bug #234498).
-	host-is-pax && skip_tests+=" ctypes"
+	local skip_tests="distutils httpservers minidom pyexpat sax tcl"
 
 	for test in ${skip_tests}; do
 		mv "${S}/Lib/test/test_${test}.py" "${T}"
 	done
 
 	# Rerun failed tests in verbose mode (regrtest -w).
-	EXTRATESTOPTS="-w" emake test
+	emake test EXTRATESTOPTS="-w" < /dev/tty
 	local result="$?"
 
 	for test in ${skip_tests}; do
@@ -300,14 +270,13 @@ src_install() {
 	emake DESTDIR="${D}" altinstall maninstall || die "emake altinstall maninstall failed"
 	python_clean_installation_image -q
 
-	sed -e "s/\(LDFLAGS=\).*/\1/" -i "${ED}$(python_get_libdir)/config/Makefile" || die "sed failed"
-
 	mv "${ED}usr/bin/python${SLOT}-config" "${ED}usr/bin/python-config-${SLOT}"
 
 	# Fix collisions between different slots of Python.
 	mv "${ED}usr/bin/2to3" "${ED}usr/bin/2to3-${SLOT}"
 	mv "${ED}usr/bin/pydoc" "${ED}usr/bin/pydoc${SLOT}"
 	mv "${ED}usr/bin/idle" "${ED}usr/bin/idle${SLOT}"
+	mv "${ED}usr/share/man/man1/python.1" "${ED}usr/share/man/man1/python${SLOT}.1"
 	rm -f "${ED}usr/bin/smtpd.py"
 
 	if use build; then
@@ -321,8 +290,6 @@ src_install() {
 
 	use threads || rm -fr "${ED}$(python_get_libdir)/multiprocessing"
 
-	prep_ml_includes $(python_get_includedir)
-
 	dodoc Misc/{ACKS,HISTORY,NEWS} || die "dodoc failed"
 
 	if use examples; then
@@ -333,53 +300,30 @@ src_install() {
 	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT} || die "newinitd failed"
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT} || die "newconfd failed"
 
-	# Do not install empty directories.
+	# Do not install empty directory.
 	rmdir "${ED}$(python_get_libdir)/lib-old"
-	rmdir "${ED}$(python_get_libdir)/test/data"
-}
-
-save_active_python_version() {
-	active_python_2=$(eselect python show --python2)
-	active_python_3=$(eselect python show --python3)
-	active_python_main=$(eselect python show)
-}
-
-restore_active_python_version() {
-	if [[ -n "${active_python_2}" &&
-			"${active_python_2}" != $(eselect python show --python2) ]] ; then
-		einfo "Restoring active Python 2.x interpreter: ${active_python_2}"
-		eselect python set --python2 "${active_python_2}"
-	fi
-	if [[ -n "${active_python_3}" &&
-			"${active_python_3}" != $(eselect python show --python3) ]] ; then
-		einfo "Restoring active Python 3.x interpreter: ${active_python_3}"
-		eselect python set --python3 "${active_python_3}"
-	fi
-
-	if [[ -n "${active_python_main}" &&
-			"${active_python_main}" != $(eselect python show) ]] ; then
-		einfo "Restoring main active Python interpreter: ${active_python_main}"
-		eselect python set "${active_python_main}"
-	fi
-}
-
-ensure_python_symlink() {
-	if [[ -z "$(eselect python show --python${PV%%.*})" ]]; then
-		eselect python update --python${PV%%.*}
-	fi
 }
 
 pkg_preinst() {
-	save_active_python_version
-
-	if has_version "<${CATEGORY}/${PN}-${SLOT}" && ! has_version "${CATEGORY}/${PN}:2.7"; then
+	if has_version "<${CATEGORY}/${PN}-${SLOT}" && ! has_version "${CATEGORY}/${PN}:2.6" && ! has_version "${CATEGORY}/${PN}:2.7"; then
 		python_updater_warning="1"
 	fi
 }
 
+eselect_python_update() {
+	[[ -z "${EROOT}" ]] && EROOT="${ROOT%/}${EPREFIX}/"
+
+	if [[ -z "$(eselect python show)" || ! -f "${EROOT}usr/bin/$(eselect python show)" ]]; then
+		eselect python update
+	fi
+
+	if [[ -z "$(eselect python show --python${PV%%.*})" || ! -f "${EROOT}usr/bin/$(eselect python show --python${PV%%.*})" ]]; then
+		eselect python update --python${PV%%.*}
+	fi
+}
+
 pkg_postinst() {
-	restore_active_python_version
-	ensure_python_symlink
+	eselect_python_update
 
 	python_mod_optimize -f -x "/(site-packages|test|tests)/" $(python_get_libdir)
 
@@ -397,7 +341,7 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	ensure_python_symlink
+	eselect_python_update
 
 	python_mod_cleanup $(python_get_libdir)
 }
