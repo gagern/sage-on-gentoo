@@ -1,6 +1,21 @@
 # ChangeLog for sci-libs/flint
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  17 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  files/flint-1.5.1-without-zn_poly.patch, flint-1.5.2.ebuild,
+  files/flint-1.5.2-enable-ntl.patch:
+  Various change prompted by the macos work
+
+  07 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz> flint-1.5.2.ebuild:
+  cleaner ebuild with multilib
+
+  07 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz> flint-1.5.2.ebuild:
+  Make changes for macos support
+
+  17 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  flint-1.5.2.ebuild, -files/flint-1.5.2-use-mpir-instead-of-gmp.patch:
+  Removed mpir support
 
   02 Oct 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -flint-1.5.1-makefile.patch:

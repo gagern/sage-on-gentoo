@@ -1,6 +1,33 @@
 # ChangeLog for sci-mathematics/sage-notebook
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*sage-notebook-0.8.11 (22 Jan 2011)
+
+  22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-notebook-0.8.11.ebuild:
+  version bump for 4.6.2_alpha1
+
+*sage-notebook-0.8.10-r1 (20 Jan 2011)
+
+  20 Jan 2011; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  -sage-notebook-0.8.10.ebuild, +sage-notebook-0.8.10-r1.ebuild:
+  Added call to python_set_active_version which selects proper python (version
+  2.6)
+
+  15 Jan 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  Manifest:
+  Fixed Manifest - upstream silently changed tarball (?)
+
+  14 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-notebook-0.8.10.ebuild:
+  move to 4.6.1 repo
+
+*sage-notebook-0.8.10 (25 Dec 2010)
+
+  25 Dec 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-notebook-0.8.9.ebuild, +sage-notebook-0.8.10.ebuild:
+  Bump to version included in 4.6.1.rc0
 
   17 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
   -sage-notebook-0.8.8.ebuild:

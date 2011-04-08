@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -10,12 +10,12 @@ MY_PN="L"
 MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="A program for calculating with L-functions"
-HOMEPAGE="http://pmmac03.math.uwaterloo.ca/~mrubinst/L_function_public/CODE/"
-SRC_URI="http://pmmac03.math.uwaterloo.ca/~mrubinst/L_function_public/CODE/${MY_P}.tar.gz"
+HOMEPAGE="http://oto.math.uwaterloo.ca/~mrubinst/L_function_public/L.html"
+SRC_URI="http://oto.math.uwaterloo.ca/~mrubinst/L_function_public/CODE/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="pari -pari24"
 
 # TODO: depend on pari[gmp] ?
@@ -38,11 +38,14 @@ pkg_setup() {
 	fi
 }
 
-
 src_prepare() {
 	# patch for proper installation routine, flag respect and crufty linking flag removal.
 	epatch "${FILESDIR}"/${P}-makefile.patch
 
+	# macos patch
+	sed -i "s:-dynamiclib:-dynamiclib -install_name ${EPREFIX}/usr/$(get_libdir)/libLfunction.dylib:g" \
+		Makefile || die "failed to fix macos dylib"
+	
 	# patch for pari-2.4 this pari-2.3 safe.
 	sed -i "s:lgeti:(long)cgeti:g" Lcommandline_elliptic.cc || die "sed for lgeti failed"
 
@@ -58,6 +61,10 @@ src_prepare() {
 
 	if ( use pari || use pari24 ) ; then
 		export PARI_DEFINE=-DINCLUDE_PARI
+	fi
+	
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		sed -i "s:.so:.dylib:g" Makefile || die "sed for macos failed"
 	fi
 }
 

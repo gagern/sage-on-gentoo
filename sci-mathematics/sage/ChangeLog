@@ -1,6 +1,123 @@
 # ChangeLog for sci-mathematics/sage
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  27 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.6.2_alpha2.ebuild:
+  missed a sed that needed correcting
+
+  27 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.6.2_alpha2.ebuild:
+  Fix typo in patch name
+
+  27 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/14600.patch.bz2, +files/trac_10039_parma_polyhedra_library.patch.bz2,
+  sage-4.6.2_alpha2.ebuild, +files/docstring-fixes.patch.bz2,
+  +files/trac_10140_base_cone_on_ppl.patch.bz2,
+  +files/trac_10140_fix_toric_variety_doctests.patch.bz2,
+  +files/trac_10233_fix_cython_include_path.patch.bz2,
+  +files/trac_7377-abstract-maxima-rebased.patch.bz2,
+  +files/sage-4.6.1-exp-site-packages.patch,
+  +files/trac_7377-fastcalculus-rebased.patch.bz2,
+  +files/trac_7377-maximalib-rebased.patch.bz2, metadata.xml:
+  Add experimental use flag to alpha2
+
+  26 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-4.6.2_alpha1.ebuild, +sage-4.6.2_alpha2.ebuild:
+  alpha2
+
+  22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6.2_alpha1.ebuild:
+  Deal with SAGE_INC in 4.6.2_alpha1
+
+  22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6.2_alpha1.ebuild:
+  adjust sagenb dependency
+
+*sage-4.6.2_alpha1 (22 Jan 2011)
+
+  22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-4.6.2_alpha1.ebuild:
+  Ooops worng version
+
+*sage-4.6.2_alpha2 (22 Jan 2011)
+
+  22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-4.6.2_alpha2.ebuild:
+  4.6.2_alpha1
+
+  22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz> sage-4.6.1-r1.ebuild:
+  Only use -DNDEBUG with libsingular.
+
+  21 Jan 2011; <cschwan@students.uni-mainz.de>
+  sage-4.6.1-r1.ebuild:
+  Do not hard depend on maxima 5.22 - 5.23 is works fine. Added einfo
+  for parallel doctesting
+
+*sage-4.6-r2 (20 Jan 2011)
+
+  20 Jan 2011; <cschwan@students.uni-mainz.de> +sage-4.6.1-r1.ebuild:
+  Added call to python_set_active_version which selects proper python (
+  version 2.6)
+
+  15 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz> sage-4.6.1.ebuild:
+  move singular to RDEP in 4.6.1. libsingular is the only one needed in DEP.
+
+*sage-4.6.1 (14 Jan 2011)
+
+  14 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-4.6.1_rc1.ebuild, +sage-4.6.1.ebuild:
+  4.6.1 is out
+
+*sage-4.6.1_rc1 (11 Jan 2011)
+
+  11 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-4.6.1_rc0.ebuild, -sage-4.6.1_rc0-r1.ebuild, +sage-4.6.1_rc1.ebuild:
+  Bump to 4.6.1.rc1 - we are now using singular/libsingular
+
+  03 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6.1_rc0-r1.ebuild:
+  better singular dep handling
+
+*sage-4.6.1_rc0-r1 (03 Jan 2011)
+
+  03 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-4.6.1_rc0-r1.ebuild:
+  Bump to test singular/libsingular split
+
+  25 Dec 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6.1_rc0.ebuild:
+  adjust dep to sage-notebook in rc0
+
+*sage-4.6.1_rc0 (25 Dec 2010)
+
+  25 Dec 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -files/sage-4.5.2-ecls_ppc.patch, sage-4.6-r1.ebuild,
+  -sage-4.6.1_alpha2.ebuild, +sage-4.6.1_rc0.ebuild:
+  Bump to rc0 - drop ppc specific patch.
+
+  20 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.6-r1.ebuild, sage-4.6.1_alpha2.ebuild:
+  Removed USE flags which seem to be unnecessary
+
+  18 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.6-r1.ebuild, sage-4.6.1_alpha2.ebuild:
+  Do not strictly depend on numpy built with USE=lapack - Sage works
+  without it
+
+  17 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.6-r1.ebuild, sage-4.6.1_alpha2.ebuild:
+  Depend on zodb-3.9.7 because 3.10.1 pulls in dependencies not
+  available on prefix
+
+  16 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-4.6.ebuild:
+  Removed old one
+
+  12 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.6.ebuild, sage-4.6-r1.ebuild, sage-4.6.1_alpha2.ebuild:
+  Depend on gdmodule with png support; thanks to Steven for
+  reporting
 
   04 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.6.ebuild, sage-4.6-r1.ebuild, sage-4.6.1_alpha2.ebuild:

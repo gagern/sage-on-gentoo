@@ -10,21 +10,21 @@ MY_P="sage-${PV}"
 
 DESCRIPTION="Sage's C library"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> sage-${PV}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/standard/${MY_P}.spkg -> sage-${PV}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE=""
 
 RESTRICT="mirror"
 
 DEPEND="dev-libs/gmp[-nocxx]
-	>=dev-libs/ntl-5.4.2
+	>=dev-libs/ntl-5.5.2
 	>=dev-lang/python-2.6.4
 	>=sci-libs/pynac-0.2.1
 	sci-mathematics/pari:3
-	>=sci-mathematics/polybori-0.6.4[sage]"
+	>=sci-mathematics/polybori-0.6.5-r2[sage]"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}/c_lib"

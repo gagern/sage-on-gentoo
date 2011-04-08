@@ -1,6 +1,48 @@
 # ChangeLog for sci-mathematics/sage-baselayout
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*sage-baselayout-4.6.2_alpha2 (26 Jan 2011)
+
+  26 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.6.2_alpha1.ebuild, +sage-baselayout-4.6.2_alpha2.ebuild:
+  alpha2
+
+*sage-baselayout-4.6.2_alpha1 (22 Jan 2011)
+
+  22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-baselayout-4.6.2_alpha1.ebuild:
+  4.6.2_alpha1
+
+*sage-baselayout-4.6.1-r1 (20 Jan 2011)
+
+  20 Jan 2011; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  -sage-baselayout-4.6.1.ebuild, +sage-baselayout-4.6.1-r1.ebuild:
+  Force python version to 2.6
+
+*sage-baselayout-4.6.1 (14 Jan 2011)
+
+  14 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-baselayout-4.6.1_rc1.ebuild, +sage-baselayout-4.6.1.ebuild:
+  4.6.1 is out
+
+*sage-baselayout-4.6.1_rc1 (11 Jan 2011)
+
+  11 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-baselayout-4.6.1_rc0.ebuild, +sage-baselayout-4.6.1_rc1.ebuild:
+  bump to 4.6.1.rc1
+
+*sage-baselayout-4.6.1_rc0 (25 Dec 2010)
+
+  25 Dec 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-baselayout-4.6.1_alpha2.ebuild, +sage-baselayout-4.6.1_rc0.ebuild,
+  -files/sage-baselayout-4.6.1_alpha0-gentooify-startup-script.patch,
+  +files/sage-baselayout-4.6.1_rc0-gentooify-startup-script.patch:
+  Bump to rc0
+
+  16 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-baselayout-4.6.ebuild, -sage-baselayout-4.6-r1.ebuild:
+  Removed old ones
 
 *sage-baselayout-4.6-r2 (29 Nov 2010)
 

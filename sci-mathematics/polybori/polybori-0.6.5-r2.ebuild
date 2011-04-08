@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/${PN}/${PN}/${PV}/${PN}-$(replace_version_separato
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc gd sage"
 
 # polybori does not have a working set of tests
@@ -59,6 +59,10 @@ src_prepare() {
 
 	# Ticket #9717 in Sage's bug tracker - fix SIGSEGV errors
 	epatch "${FILESDIR}"/${PN}-0.6.5-fix-another-SIGSEGV.patch
+
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		epatch "${FILESDIR}"/${PN}-0.6.5-sconstruct-macos.patch
+	fi
 }
 
 src_compile(){
@@ -82,6 +86,17 @@ src_compile(){
 		PYINSTALLPREFIX="${ED}"$(python_get_sitedir)
 		INSTALLDIR="${ED}"/usr/share/polybori
 	)
+	
+	# extra configuration for macos 
+	# FIXME: don't know how to deal properly with versionned libraries with install_name so dropping it.
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		myesconsargs+=(
+			SHLINKFLAGS="${LDFLAGS} -dynamiclib"
+			HAVE_PYTHON_EXTENSION=False
+			EXTERNAL_PYTHON_EXTENSION=True
+			SHLIBVERSIONING=False
+		)
+	fi
 
 	escons "${myesconsargs[@]}" prepare-install prepare-devel || die
 }
@@ -95,7 +110,24 @@ src_install() {
 			|| die "failed to remove useless documentation"
 	fi
 
-	# we only need shared objects
-	rm "${ED}"/usr/$(get_libdir)/lib*.a \
-		|| die "failed to remove static libraries"
+	# FIXME: Dynamic libraries now work on linux but are broken on OS X
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		# Removing dynamic libraries keeping only static objects
+		rm "${ED}"/usr/$(get_libdir)/lib*.dylib \
+			|| die "failed to remove static libraries"
+	else
+		# we only need shared objects elsewhere
+		rm "${ED}"/usr/$(get_libdir)/lib*.a \
+			|| die "failed to remove static libraries"
+	fi
+
+	# fixing install names on OS X
+	#if [[ ${CHOST} == *-darwin* ]] ; then
+	#	cd "${ED}"/usr/$(get_libdir)
+	#	for d in *.dylib ; do
+	#		ebegin "  correcting install_name of ${d}"
+	#		install_name_tool -id "${EPREFIX}/usr/$(get_libdir)/${d}" "${d}"
+	#		eend $?
+	#	done
+	#fi
 }

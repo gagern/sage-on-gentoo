@@ -5,7 +5,7 @@
 EAPI="3"
 
 PYTHON_DEPEND="2:2.6:2.6"
-PYTHON_USE_WITH="sage sqlite"
+PYTHON_USE_WITH="readline sage sqlite"
 
 inherit distutils eutils flag-o-matic python versionator
 
@@ -13,21 +13,20 @@ MY_P="sage-${PV}"
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
-#SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
-RESTRICT="mirror"
-S="${WORKDIR}/${MY_P}"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
-IUSE="examples latex testsuite X"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+IUSE="examples latex testsuite"
+
+RESTRICT="mirror"
 
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
 	>=dev-libs/ntl-5.5.2
 	>=dev-lisp/ecls-10.2.1[-unicode]
-	>=dev-python/numpy-1.5.0-r3[lapack]
+	=dev-python/numpy-1.5.0-r3
 	>=sci-mathematics/eclib-20100711[pari24]
 	>=sci-mathematics/ecm-6.2.1
 	>=sci-libs/flint-1.5.0[ntl]
@@ -36,13 +35,13 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/gsl-1.14
 	>=sci-libs/iml-1.0.1
 	>=sci-libs/libcliquer-1.2_p7
-	>=sci-libs/linbox-1.1.6[ntl,sage]
+	>=sci-libs/linbox-1.1.6[sage]
 	>=sci-libs/m4ri-20100701
 	>=sci-libs/mpfi-1.4
 	>=sci-libs/pynac-0.2.1
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
-	>=sci-mathematics/glpk-4.43[gmp]
+	>=sci-mathematics/glpk-4.43
 	>=sci-mathematics/lcalc-1.23[pari24]
 	sci-mathematics/pari:3[data,gmp,sage]
 	>=sci-mathematics/polybori-0.6.5-r2[sage]
@@ -60,9 +59,9 @@ DEPEND="${CDEPEND}
 	=dev-python/cython-0.13*"
 
 RDEPEND="${CDEPEND}
-	>=dev-lang/R-2.10.1[lapack,readline]
-	>=dev-python/cvxopt-0.9
-	>=dev-python/gdmodule-0.56
+	>=dev-lang/R-2.10.1
+	>=dev-python/cvxopt-0.9[glpk]
+	>=dev-python/gdmodule-0.56-r2[png]
 	>=dev-python/ipython-0.9.1
 	>=dev-python/jinja-2.1.1
 	>=dev-python/matplotlib-1.0.0
@@ -76,7 +75,7 @@ RDEPEND="${CDEPEND}
 	dev-python/sqlalchemy
 	~dev-python/sympy-0.6.6
 	>=media-gfx/tachyon-0.98
-	>=net-zope/zodb-3.7.0
+	~net-zope/zodb-3.9.7
 	>=sci-libs/cddlib-094f-r2
 	=sci-libs/scipy-0.8*
 	>=sci-mathematics/flintqs-20070817_p5
@@ -106,7 +105,7 @@ RDEPEND="${CDEPEND}
 	)
 	latex? ( ~dev-tex/sage-latex-2.2.5 )"
 
-# TODO: check if use flags are necessary
+S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
 	# ATLAS independence
@@ -163,11 +162,6 @@ src_prepare() {
 
 	# remove annoying std=c99 from a c++ file.
 	epatch "${FILESDIR}"/${PN}-4.4.4-extra-stdc99.patch
-
-	# Fix ecls bug for ppc see #308909. This has to be done before sed is applied to module_list.py
-	if use ppc ; then
-		epatch "${FILESDIR}"/${PN}-4.5.2-ecls_ppc.patch
-	fi
 
 	# upgrade to numpy-1.5.0/scipy-0.8
 	epatch "${FILESDIR}"/${PN}-4.6-numpy-1.5.patch

@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -12,14 +12,13 @@ SRC_URI="http://modular.math.washington.edu/home/wbhart/webpage/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
-IUSE="doc qs mpir ntl"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
+IUSE="doc qs ntl"
 
 RESTRICT="mirror"
 
 DEPEND="ntl? ( dev-libs/ntl )
-	mpir? ( sci-libs/mpir )
-	!mpir? ( dev-libs/gmp )
+	dev-libs/gmp
 	>=sci-libs/zn_poly-0.9"
 RDEPEND="${DEPEND}"
 
@@ -35,17 +34,19 @@ src_prepare() {
 		epatch "${FILESDIR}"/${P}-enable-ntl.patch
 	fi
 
-	if use mpir ; then
-		epatch "${FILESDIR}"/${P}-use-mpir-instead-of-gmp.patch
-	fi
+	# fix install name for macos
+	sed -i "s:-dynamiclib:-dynamiclib -install_name ${EPREFIX}/usr/$(get_libdir)/libflint.dylib:g" \
+		makefile || die "failed to fix macos support"
 }
 
 src_compile() {
 	local flint_flags=(
 		FLINT_CC=$(tc-getCC)
 		FLINT_CPP=$(tc-getCXX)
-		FLINT_LIB=lib${PN}.so
+		FLINT_LIB=lib${PN}$(get_libname)
 		FLINT_LINK_OPTIONS="${LDFLAGS}"
+		FLINT_GMP_LIB_DIR="${EPREFIX}"/usr/$(get_libdir)
+		FLINT_NTL_LIB_DIR="${EPREFIX}"/usr/$(get_libdir)
 	)
 
 	emake "${flint_flags[@]}" library || die
@@ -66,7 +67,7 @@ src_test() {
 }
 
 src_install(){
-	dolib.so libflint.so || die
+	dolib.so libflint$(get_libname) || die
 
 	insinto /usr/include/FLINT
 	doins *.h || die

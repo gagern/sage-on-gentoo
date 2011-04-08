@@ -8,11 +8,11 @@ MY_P="extcode-${PV}"
 
 DESCRIPTION="Extcode for Sage"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/sage-4.6/sage-4.6/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE=""
 
 RESTRICT="mirror"

@@ -1,6 +1,36 @@
 # ChangeLog for sci-mathematics/sage-examples
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*sage-examples-4.6.2_alpha2 (26 Jan 2011)
+
+  26 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-examples-4.6.2_alpha1.ebuild, +sage-examples-4.6.2_alpha2.ebuild:
+  alpha2
+
+*sage-examples-4.6.2_alpha1 (22 Jan 2011)
+
+  22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-examples-4.6.2_alpha1.ebuild:
+  4.6.2_alpha1
+
+*sage-examples-4.6.1 (14 Jan 2011)
+
+  14 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-examples-4.6.1_rc1.ebuild, +sage-examples-4.6.1.ebuild:
+  4.6.1
+
+*sage-examples-4.6.1_rc1 (11 Jan 2011)
+
+  11 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-examples-4.6.1_rc0.ebuild, +sage-examples-4.6.1_rc1.ebuild:
+  bump to 4.6.1.rc1
+
+*sage-examples-4.6.1_rc0 (25 Dec 2010)
+
+  25 Dec 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-examples-4.6.1_alpha2.ebuild, +sage-examples-4.6.1_rc0.ebuild:
+  Bump to rc0
 
 *sage-examples-4.6.1_alpha2 (17 Nov 2010)
 

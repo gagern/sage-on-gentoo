@@ -1,0 +1,32 @@
+# ChangeLog for sci-libs/libsingular
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  libsingular-3.1.1.4.ebuild:
+  fix syntax error
+
+  22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  libsingular-3.1.1.4.ebuild:
+  minor macos fixes, editing.
+
+  10 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  files/singular-3.1.1.3-dylib.patch, libsingular-3.1.1.4.ebuild:
+  Proper support for OS X.
+
+  09 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  libsingular-3.1.1.4.ebuild:
+  config changes for better prefix support (hopefully)
+
+  04 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  libsingular-3.1.1.4.ebuild:
+  remove cruft from the ebuild.
+
+*libsingular-3.1.1.4 (03 Jan 2011)
+
+  03 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  +files/singular-3.1.0-gentoo.patch, +files/singular-3.1.1.3-dylib.patch,
+  +files/singular-3.1.1.3-soname.patch, +libsingular-3.1.1.4.ebuild,
+  +files/singular-3.1.1.4-parallelmake.patch, +metadata.xml:
+  Initial ebuild for a separate libsingular
+
