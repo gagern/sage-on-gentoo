@@ -4,8 +4,9 @@
 
 EAPI="3"
 
-PYTHON_DEPEND="2:2.7:2.7"
-inherit eutils scons-utils versionator multilib
+SUPPORT_PYTHON_ABIS=1
+RESTRICT_PYTHON_ABIS="3.* *-jython"
+inherit eutils python scons-utils versionator multilib
 
 MY_P="sage-$(replace_version_separator 2 '.')"
 
@@ -43,17 +44,34 @@ src_prepare() {
 	# Use pari-2.4
 	sed -i "s:pari/:pari24/:" include/convert.h || die "failed to use pari2.4 headers"
 
-	# Use python 2.7
-	sed -i "s:python2.6:python2.7:g" SConstruct
+	python_execute_function libcsage_src_prepare
+}
+
+libcsage_src_prepare() {
+	local BUILDDIR="${S}-${PYTHON_ABI}"
+	mkdir "${BUILDDIR}" || die
+	cp -r "${S}"/{include,src,SConstruct} "${BUILDDIR}"/ || die "copy failed"
+	sed -i "s:python2.6:python${PYTHON_ABI}:g" "${BUILDDIR}"/SConstruct
 }
 
 src_compile() {
+	python_execute_function -s libcsage_src_compile
+}
+
+libcsage_src_compile() {
 	# build libcsage.so
-	CXX= SAGE_LOCAL="${EPREFIX}"/usr UNAME=$(uname) escons || die
+	tc-export CC CXX
+	SAGE_LOCAL="${EPREFIX}"/usr UNAME=$(uname) escons || die
 }
 
 src_install() {
-	dolib.so libcsage$(get_libname) || die
 	insinto /usr/include/csage
 	doins include/*.h || die
+	python_execute_function -s libcsage_src_install
+}
+
+libcsage_src_install() {
+	insinto "$(python_get_libdir)/lib-dynload"
+	insopts -m0755
+	doins libcsage$(get_libname) || die
 }
