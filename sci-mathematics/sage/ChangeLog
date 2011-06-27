@@ -2,6 +2,41 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Nov 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.6.ebuild, sage-4.6-r1.ebuild, sage-4.6.1_alpha2.ebuild:
+  Adjusted dependencies on flintqs and libcliquer
+
+  22 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6.1_alpha2.ebuild:
+  maxima-5.22.1 has been unmerged from upstream alpha2, re-enabling
+
+  20 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6.1_alpha2.ebuild:
+  Real alpha2 release hopefully.
+
+  18 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6.1_alpha2.ebuild:
+  correct cvxopt/glpk dependency
+
+  17 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6.1_alpha2.ebuild:
+  Better glpk header fix
+
+  17 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6.1_alpha2.ebuild:
+  Adjust RDEP
+
+*sage-4.6.1_alpha2 (17 Nov 2010)
+
+  17 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-4.6.1_alpha1.ebuild, +sage-4.6.1_alpha2.ebuild,
+  -files/trac-8898_unix-endlines.patch:
+  bump to alpha2
+
+  15 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6.1_alpha1.ebuild, metadata.xml:
+  Add useflag to build dev-libs/mpc extension
+
   14 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha1.ebuild:
   more numpy touch up.

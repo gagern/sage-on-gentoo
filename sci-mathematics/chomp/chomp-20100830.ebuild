@@ -22,7 +22,7 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${MY_PN}"
+S="${WORKDIR}/${PN}"
 
 src_compile() {
 	# since we are replacing compiler flags, add chomp' one

@@ -23,7 +23,7 @@ S="${WORKDIR}/${SAGE_P}"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
-IUSE="examples latex testsuite X"
+IUSE="examples mpc latex testsuite X"
 
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
@@ -37,7 +37,7 @@ CDEPEND="dev-libs/gmp
 	=sci-libs/givaro-3.2*
 	>=sci-libs/gsl-1.14
 	>=sci-libs/iml-1.0.1
-	>=sci-libs/libcliquer-1.2_p6
+	>=sci-libs/libcliquer-1.2_p7
 	>=sci-libs/linbox-1.1.6[ntl,sage]
 	>=sci-libs/m4ri-20100701
 	>=sci-libs/mpfi-1.4
@@ -56,14 +56,15 @@ CDEPEND="dev-libs/gmp
 	media-libs/libpng
 	>=sys-libs/readline-6.0
 	sys-libs/zlib
-	virtual/cblas"
+	virtual/cblas
+	mpc? ( dev-libs/mpc )"
 
 DEPEND="${CDEPEND}
 	=dev-python/cython-0.13*"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.10.1[lapack,readline]
-	>=dev-python/cvxopt-0.9
+	>=dev-python/cvxopt-1.1.3[glpk]
 	>=dev-python/gdmodule-0.56
 	>=dev-python/ipython-0.9.1
 	>=dev-python/jinja-2.1.1
@@ -74,14 +75,14 @@ RDEPEND="${CDEPEND}
 	>=dev-python/pycrypto-2.1.0
 	>=dev-python/python-gnutls-1.1.4
 	>=dev-python/rpy-2.0.6
-	>=dev-python/sphinx-0.6.3
+	>=dev-python/sphinx-1.0.4
 	dev-python/sqlalchemy
 	~dev-python/sympy-0.6.6
 	>=media-gfx/tachyon-0.98
 	>=net-zope/zodb-3.7.0
 	>=sci-libs/cddlib-094f-r2
 	=sci-libs/scipy-0.8*
-	>=sci-mathematics/flintqs-20070817_p4
+	>=sci-mathematics/flintqs-20070817_p5
 	>=sci-mathematics/gap-4.4.12
 	>=sci-mathematics/gap-guava-3.4
 	>=sci-mathematics/genus2reduction-0.3_p8
@@ -99,7 +100,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-polytopes_db-20100210
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
-	~sci-mathematics/sage-notebook-0.8.8
+	~sci-mathematics/sage-notebook-0.8.9
 	>=sci-mathematics/sympow-1.018.1_p8
 	examples? ( ~sci-mathematics/sage-examples-${PV} )
 	testsuite? (
@@ -163,9 +164,6 @@ src_prepare() {
 		-e "s:%s/local/etc/gprc.expect'%SAGE_ROOT:${EPREFIX}/etc/gprc.expect':" \
 		-i sage/interfaces/gp.py || die "failed to patch interfaces/gp.py"
 
-	# remove annoying std=c99 from a c++ file.
-	epatch "${FILESDIR}"/${PN}-4.4.4-extra-stdc99.patch
-
 	# Fix ecls bug for ppc see #308909. This has to be done before sed is applied to module_list.py
 	if use ppc ; then
 		epatch "${FILESDIR}"/${PN}-4.5.2-ecls_ppc.patch
@@ -174,7 +172,6 @@ src_prepare() {
 	# upgrade to maxima-5.22.1 ticket #10187
 	epatch "${FILESDIR}"/trac_10187_maxima-doctests.patch
 	epatch "${FILESDIR}"/trac_10187_maxima-upgrade.patch
-
 
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"
@@ -280,7 +277,7 @@ src_prepare() {
 	# patch for glpk
 	sed -i \
 		-e "s:\.\./\.\./\.\./\.\./devel/sage/sage:..:g" \
-		-e "s:\.\./\.\./\.\./local:/usr:g" \
+		-e "s:\.\./\.\./\.\./local/include/::g" \
 		sage/numerical/backends/glpk_backend.pxd || die "failed to patch glpk backend"
 
 	# Ticket #5155:
@@ -295,13 +292,6 @@ src_prepare() {
 	# fix save path (for testing only)
 	sed -i "s:save(w,'test'):save(w,tmp_filename('test')):g" \
 		sage/combinat/words/morphism.py || die "failed to patch path for save"
-
-	# Ticket #8898: fix scheduled for alpha2
-	# make sure line endings are unix ones so as not to confuse python-2.6.5
-	edos2unix sage/libs/mpmath/ext_impl.pxd
-	edos2unix sage/libs/mpmath/ext_main.pyx
-	edos2unix sage/libs/mpmath/ext_main.pxd
-	edos2unix sage/libs/mpmath/ext_libmp.pyx
 
 	# replace SAGE_ROOT/local with SAGE_LOCAL
 	epatch "${FILESDIR}"/${PN}-4.6-fix-SAGE_LOCAL.patch
@@ -325,6 +315,12 @@ src_prepare() {
 		-e "s:'wave0.sobj':tmp_filename('wave0')+'.sobj':g" \
 		-e "s:'wave1.sobj':tmp_filename('wave1')+'.sobj':g" \
 		sage/plot/animate.py
+
+	# enable dev-libs/mpc if required
+	if use mpc ; then
+		sed -i "s:is_package_installed('mpc'):True:g" module_list.py \
+			|| die "failed to enable dev-libs/mpc"
+	fi
 
 	# do not forget to run distutils
 	distutils_src_prepare
