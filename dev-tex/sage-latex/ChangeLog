@@ -1,6 +1,34 @@
 # ChangeLog for dev-tex/sage-latex
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*sage-latex-2.3.1-r1 (12 Nov 2011)
+
+  12 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-latex-2.3.1.ebuild, +sage-latex-2.3.1-r1.ebuild,
+  -files/sage-latex-2.3.1-chksum.patch,
+  files/sage-latex-2.3.1-install-python-files-only.patch:
+  switche to sage spkg for 2.3.1
+
+  10 Nov 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-latex-2.2.5-r2.ebuild, sage-latex-2.3.1.ebuild:
+  Migrate to EAPI Migrate to EAPI 44
+
+  06 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-latex-2.3.1.ebuild:
+  fix S 
+
+*sage-latex-2.3.1 (17 Jun 2011)
+
+  17 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-latex-2.3.1.ebuild, +files/sage-latex-2.3.1-chksum.patch,
+  +files/sage-latex-2.3.1-install-python-files-only.patch:
+  Revbump to 2.3.1. Switch to bitbucket sources, this requires generation of
+  docs.
+
+  14 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-latex-2.2.5-r2.ebuild:
+  Make sage-latex support multiple python
 
   08 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
   Fix metadata

@@ -2,6 +2,24 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*lcalc-1.23-r4 (22 Aug 2011)
+
+  22 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +lcalc-1.23-r4.ebuild, +files/lcalc-1.23-pari-2.5.patch:
+  get a pari-2.5 enabled lcalc
+
+  03 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  lcalc-1.23-r3.ebuild:
+  adjusting pari dependencies
+
+  20 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  lcalc-1.23-r3.ebuild:
+  Migrate to EAPI 4
+
+  05 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  lcalc-1.23-r3.ebuild, +files/lcalc-1.23-gcc-4.6-fix.patch:
+  Add patch for gcc 4.6
+
   12 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz> lcalc-1.23-r3.ebuild:
   Ported to macos prefix
 

@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit eutils versionator
 
@@ -21,8 +21,8 @@ IUSE="pari24"
 RESTRICT="mirror"
 
 DEPEND=""
-RDEPEND="pari24? ( sci-mathematics/pari:3 )
-	!pari24? ( sci-mathematics/pari:0 )"
+RDEPEND="pari24? ( =sci-mathematics/pari-2.4.3-r1 )
+	!pari24? ( >=sci-mathematics/pari-2.5.0 )"
 
 S="${WORKDIR}/${MY_P}/src"
 
@@ -78,21 +78,25 @@ src_configure() {
 	./Configure || die "failed to configure sources"
 }
 
+src_compile() {
+	emake CC="$(tc-getCC)" OPT=
+}
+
 src_install() {
 	# install and rename script
-	newbin new_data sympow_new_data || die
+	newbin new_data sympow_new_data
 
 	# install and rename binary
-	newbin sympow sympow_bin || die
+	newbin sympow sympow_bin
 
 	# install wrapper script
-	newbin sympow_temp sympow || die
+	newbin sympow_temp sympow
 
 	# install pari scripts and data
 	insinto /usr/share/sympow
-	doins *.gp || die
-	doins -r datafiles || die
+	doins *.gp
+	doins -r datafiles
 
 	# install docs
-	dodoc README || die
+	dodoc README
 }

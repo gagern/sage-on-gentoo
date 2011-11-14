@@ -77,6 +77,16 @@ QUICK INSTALLATION GUIDE
    you can not proceed with this step (because of circular dependencies, missing
    USE-flags, and so on) please report this behavior.
 
+   NOTE also, that we do _not_ recommend to use the ATLAS (sci-libs/blas-alas
+   and/or sci-libs/lapack-atlas) blas/lapack implementation since we experienced
+   some failures with it:
+
+   - https://github.com/cschwan/sage-on-gentoo/issues/3
+   - https://github.com/cschwan/sage-on-gentoo/issues/6
+
+   However, this should not pose a problem since the default choice is the
+   reference implementation.
+
 5. *UPDATE YOUR LOCAL OVERLAY*:
    To update your local copy of sage-on-gentoo simply type:
 
@@ -95,16 +105,15 @@ QUICK INSTALLATION GUIDE
 SAGE ON GENTOO PREFIX
 =====================
 
-What is Gentoo Prefix? In one sentence, a Prefix enables you to install Gentoo
-on different OS (e.g Linux, FreeBSD, MacOS, Solaris and even Windows). Thus, you
-may be able to run Sage on Gentoo e.g. on a Debian Linux. For a complete
-introduction into Gentoo Prefix and how to set it up visit
+A Prefix enables you to install Gentoo on different OS (e.g Linux, FreeBSD,
+MacOS, Solaris and even Windows). Thus, you may be able to run Sage on Gentoo
+e.g. on a Debian Linux. For a complete introduction into Gentoo Prefix and how
+to set it up visit
 
   http://www.gentoo.org/proj/en/gentoo-alt/prefix/
 
-To setup sage-on-gentoo in a Prefix simply follow the steps described in the
-quick installation guide (note that the sage-on-prefix overlay is no longer
-needed).
+After having a working Prefix you may setup sage-on-gentoo in a Prefix by
+following the quick installation guide.
 
 Currently, we support every Linux running with x86 or amd64 instruction sets, in
 particular the following architectures:

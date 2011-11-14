@@ -1,8 +1,12 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
+
+PYTHON_DEPEND="2:2.6:2.7"
+SUPPORT_PYTHON_ABIS="1"
+RESTRICT_PYTHON_ABIS="3.*"
 
 inherit distutils latex-package
 
@@ -41,7 +45,7 @@ src_compile() {
 
 src_install() {
 	if use examples ; then
-		dodoc example.tex || die
+		dodoc example.tex
 	fi
 
 	rm example.tex || die "failed to remove example file"

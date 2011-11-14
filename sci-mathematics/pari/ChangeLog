@@ -2,6 +2,40 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  11 Oct 2011; Christopher Schwan <cschwan@students.uni-mainz.de> Manifest:
+  Upstream changed elldata.tgz - regenerate Manifest
+
+  28 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -pari-2.4.4.ebuild, -files/pari-2.4.4-mp.c.patch:
+  2.4.4 won't ever be used, we'll be moving to 2.5.0 instead. Get ready for the
+  slow death of the pari24 flag.
+
+  27 Jul 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  pari-2.4.3-r1.ebuild, pari-2.4.4.ebuild:
+  Updated HOMEPAGE and SRC_URI - thanks to jezaustin for report!
+
+  03 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -pari-2.4.3.ebuild:
+  drop old pari used only by sage 4.6.2
+
+  20 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  pari-2.4.3-r1.ebuild, pari-2.4.4.ebuild:
+  Migrate to EAPI 4
+
+  13 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  pari-2.4.4.ebuild, +files/pari-2.4.4-mp.c.patch:
+  Fix patch for pari-2.4.4
+
+*pari-2.4.4 (13 May 2011)
+
+  13 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pari-2.4.4.ebuild:
+  New beta of pari (2.4.4) for sage-4.7.1 
+
+  20 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  pari-2.4.3.ebuild, pari-2.4.3-r1.ebuild:
+  x11-libs/fltk SLOTMOVE 1.1 -> 1 adjust dependencies accordingly
+
 *pari-2.4.3-r1 (22 Jan 2011)
 
   22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>

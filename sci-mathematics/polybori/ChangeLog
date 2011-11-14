@@ -2,6 +2,144 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-0.7.1-r1.ebuild:
+  Remove m4ri_sse2 patch for now. More harm than help.
+
+  04 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-0.7.1-r1.ebuild:
+  fix really stupid typo
+
+*polybori-0.7.1-r1 (04 Oct 2011)
+
+  04 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -polybori-0.7.1.ebuild, +polybori-0.7.1-r1.ebuild,
+  +files/polybori-0.7.1-jinja2.patch, +files/polybori-0.7.1-m4ri_sse2.patch,
+  +files/polybori-header.patch:
+  bump 0.7.1 to include various upstream fixes already in sage.
+
+  07 Sep 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-9999.ebuild:
+  Update hot ebuild, Alexandre has been very good to us and most of our fixes
+  are gone.
+
+  24 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-9999.ebuild:
+  more work on polybori-9999
+
+  19 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-9999.ebuild:
+  More correction for OS X, upstream may do something about this particular
+  item.
+
+  18 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-9999.ebuild:
+  Actually still shipping static but installation target changed
+
+  18 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-9999.ebuild:
+  By default no more static libraries in 0.8_rc3
+
+  26 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-9999.ebuild:
+  polybori-9999 now works on OS X, trying dylib with sage is next in line.
+
+  26 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-9999.ebuild:
+  nudge polybori-9999 for OS X
+
+*polybori-9999 (10 Jul 2011)
+
+  10 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/polybori-0.8-SConstruct_O3.patch, +polybori-9999.ebuild:
+  Importing a hot ebuild of polybori.
+
+  03 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/polybori-0.6.4-save-flags.patch, -polybori-0.6.5-r2.ebuild,
+  -files/polybori-0.6.5-fix-another-SIGSEGV.patch,
+  -files/polybori-0.6.5-fix-double-free-error.patch,
+  -files/polybori-0.6.5-sconstruct-macos.patch,
+  -files/polybori-0.7-save-flags.patch, -files/pbori_routines_misc.h.patch:
+  purge patches for old polybori
+
+  03 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -polybori-0.6.5-r2.ebuild:
+  remove old python-2.6 polybori
+
+  31 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  polybori-0.7.1.ebuild:
+  Fix compiler names and removed useless sed
+
+  31 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -polybori-0.7.ebuild:
+  drop 0.7, superseded by 0.7.1 which is a better ebuild
+
+  29 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-0.7.1.ebuild:
+  Add an export DOT_SAGE in pkg_setup() when sage is used.
+
+  13 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-0.7.1.ebuild:
+  Fixed double delete of .a files
+
+  13 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-0.7.1.ebuild:
+  still no go with dynlib on macos
+
+  12 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-0.7.1.ebuild:
+  One last change for flags.conf on prefix
+
+  12 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/polybori-m4ri20100817.patch, polybori-0.7.1.ebuild:
+  Make the patch likeable to patch [original is hg patch without git
+  compatibility]
+
+  12 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/polybori-m4ri20100817.patch, polybori-0.7.1.ebuild:
+  Add new upstream patch for m4ri-20100817
+
+  12 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-0.7.1.ebuild:
+  let's not chop the prefix in flags.conf
+
+*polybori-0.7.1 (12 May 2011)
+
+  12 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +polybori-0.7.1.ebuild, +files/polybori-0.7.1-m4ri-twopow.patch:
+  Bump to 0.7.1 with compatibility fix for latest m4ri, new stuff for macos
+
+  10 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-0.7.ebuild:
+  Remove -O3 from the provided CFLAGS
+
+  09 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  polybori-0.6.5-r2.ebuild:
+  Fix dependency on m4ri - polybori does not build with version 20100817
+
+  04 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -polybori-0.6.4-r1.ebuild, -polybori-0.6.5.ebuild, -polybori-0.6.5-r1.ebuild:
+  drop old
+
+  03 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-0.7.ebuild:
+  Work on 0.7 for macos.
+
+  14 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-0.7.ebuild:
+  Make polybori-0.7 use python-2.7. scons blows...
+
+  13 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +polybori-0.7.ebuild, +files/polybori-0.7-save-flags.patch,
+  +files/pbori_routines_misc.h.patch:
+  Polybori-0.7 work.
+
+*polybori-0.7 (12 Mar 2011)
+
+  12 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +polybori-0.7.ebuild, +files/pbori_routines_misc.h.patch:
+  Add polybori-0.7
+
   18 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
   polybori-0.6.5-r2.ebuild:
   Keep only static object on OS X, dynamic are broken - again!

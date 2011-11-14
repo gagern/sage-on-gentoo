@@ -2,6 +2,236 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-baselayout-4.7.2-r1 (12 Nov 2011)
+
+  12 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.7.2.ebuild, +sage-baselayout-4.7.2-r1.ebuild,
+  metadata.xml:
+  Add a flag for sage dev tools
+
+*sage-baselayout-4.7.2 (05 Nov 2011)
+
+  05 Nov 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-baselayout-4.7.2_rc0.ebuild, +sage-baselayout-4.7.2.ebuild:
+  Version bump
+
+  01 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-baselayout-4.7.2-gentooify-startup-script.patch:
+  Fix the gentoo-ify patch for _S_ingular
+
+*sage-baselayout-4.7.2_rc0 (23 Oct 2011)
+
+  23 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.7.2_alpha3.ebuild, +sage-baselayout-4.7.2_rc0.ebuild,
+  files/sage-baselayout-4.7.2-gentooify-startup-script.patch:
+  4.7.2_rc0
+
+  06 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-baselayout-4.7.2-gentooify-startup-script.patch:
+  more correction to the patch
+
+  06 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-baselayout-4.7.2-gentooify-startup-script.patch:
+  now a proper patch
+
+  06 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-baselayout-4.7.2-gentooify-startup-script.patch:
+  update gentoify patch for 4.7.2
+
+*sage-baselayout-4.7.2_alpha3 (04 Oct 2011)
+
+  04 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.7.2_alpha2.ebuild, +sage-baselayout-4.7.2_alpha3.ebuild,
+  +files/sage-baselayout-4.7.2-fix-SAGE_LOCAL.patch,
+  files/sage-baselayout-4.7.2-gentooify-startup-script.patch:
+  update patches for 4.7.2.alpha3
+
+*sage-baselayout-4.7.2_alpha2 (24 Aug 2011)
+
+  24 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.7.2_alpha1.ebuild, +sage-baselayout-4.7.2_alpha2.ebuild:
+  4.7.2.alpha2
+
+*sage-baselayout-4.7.2_alpha1 (22 Aug 2011)
+
+  22 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-baselayout-4.7.2_alpha1.ebuild,
+  +files/sage-baselayout-4.7.2-gentooify-startup-script.patch,
+  +files/gprc.expect:
+  4.7.2.alpha1
+
+*sage-baselayout-4.7.1 (17 Aug 2011)
+
+  17 Aug 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-baselayout-4.7.1_rc0.ebuild, +sage-baselayout-4.7.1.ebuild:
+  Version bump
+
+*sage-baselayout-4.7.1_rc0 (15 Jul 2011)
+
+  15 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.7.1_alpha4.ebuild, +sage-baselayout-4.7.1_rc0.ebuild:
+  rc0
+
+*sage-baselayout-4.7.1_alpha4 (04 Jul 2011)
+
+  04 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.7.1_alpha3.ebuild, +sage-baselayout-4.7.1_alpha4.ebuild:
+  bump to to alpha4
+
+  03 Jul 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-baselayout-4.6.2-r1.ebuild:
+  Drop old
+
+*sage-baselayout-4.7.1_alpha3 (24 Jun 2011)
+
+  24 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.7.1_alpha2.ebuild, +sage-baselayout-4.7.1_alpha3.ebuild:
+  alpha3
+
+*sage-baselayout-4.7.1_alpha2 (09 Jun 2011)
+
+  09 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.7.1_alpha1.ebuild, +sage-baselayout-4.7.1_alpha2.ebuild:
+  4.7.1.alpha2
+
+*sage-baselayout-4.7.1_alpha1 (29 May 2011)
+
+  29 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-baselayout-4.7.1_alpha1.ebuild,
+  +files/sage-baselayout-4.7.1-gentooify-startup-script.patch:
+  4.7.1.alpha1
+
+  27 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.7_rc0.ebuild:
+  removing 4.7_rc0
+
+*sage-baselayout-4.7 (27 May 2011)
+
+  27 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-baselayout-4.7.ebuild:
+  Version bump
+
+  20 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-baselayout-4.6.2-r1.ebuild, sage-baselayout-4.7_rc0.ebuild:
+  Migrate to EAPI 4
+
+  04 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.6.1-r1.ebuild:
+  drop old
+
+  26 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-baselayout-4.6-gentooify-startup-script.patch,
+  -files/sage-maxima.lisp.patch:
+  prune old patches
+
+*sage-baselayout-4.7_rc0 (26 Apr 2011)
+
+  26 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.7_alpha5.ebuild, +sage-baselayout-4.7_rc0.ebuild:
+  rc0
+
+  24 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-baselayout-4.7_alpha5.ebuild,
+  -files/sage-baselayout-4.7-pythonwarning.patch:
+  moving the deprecation fix to sage proper
+
+*sage-baselayout-4.7_alpha5 (20 Apr 2011)
+
+  20 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.7_alpha4.ebuild, +sage-baselayout-4.7_alpha5.ebuild:
+  alpha5
+
+  14 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-baselayout-4.7_alpha4.ebuild,
+  +files/sage-baselayout-4.7-pythonwarning.patch:
+  Adopt Steve's patch
+
+  14 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-baselayout-4.7_alpha4.ebuild:
+  Make warnings less chatty
+
+*sage-baselayout-4.7_alpha4 (13 Apr 2011)
+
+  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.7_alpha3.ebuild, +sage-baselayout-4.7_alpha4.ebuild:
+  alpha4
+
+*sage-baselayout-4.7_alpha3 (04 Apr 2011)
+
+  04 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.7_alpha2.ebuild, +sage-baselayout-4.7_alpha3.ebuild:
+  alpha3
+
+  22 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.7_alpha1.ebuild, +sage-baselayout-4.7_alpha2.ebuild:
+  alpha2
+
+*sage-baselayout-4.6.2-r1 (18 Mar 2011)
+
+  18 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.6.2.ebuild, +sage-baselayout-4.6.2-r1.ebuild,
+  sage-baselayout-4.7_alpha1.ebuild:
+  Hack to have sage-notebook behave properly.
+
+  12 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-baselayout-4.7_alpha1.ebuild:
+  Added the new sage_root spkg to SRC_URI, provides ipython stuff.
+
+  12 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-baselayout-4.7_alpha1.ebuild:
+  the ipython folder is gone. find out wherethe ipythonrc files have been
+  relocated, ipython?
+
+*sage-baselayout-4.7_alpha1 (11 Mar 2011)
+
+  11 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-baselayout-4.7_alpha1.ebuild, -sage-baselayout-4.7_alpha2.ebuild:
+  4.7.alpha1
+
+*sage-baselayout-4.7_alpha2 (02 Mar 2011)
+*sage-baselayout-4.6.2 (02 Mar 2011)
+
+  02 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.6-r2.ebuild, -sage-baselayout-4.6.2_rc1.ebuild,
+  +sage-baselayout-4.6.2.ebuild, +sage-baselayout-4.7_alpha2.ebuild:
+  4.6.2. 4.7.alpha2 drop 4.6
+
+*sage-baselayout-4.6.2_rc1 (26 Feb 2011)
+
+  26 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.6.2_rc0.ebuild, +sage-baselayout-4.6.2_rc1.ebuild:
+  rc1
+
+*sage-baselayout-4.6.2_rc0 (18 Feb 2011)
+
+  18 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.6.2_alpha4.ebuild, +sage-baselayout-4.6.2_rc0.ebuild:
+  rc0
+
+  16 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.6.2_alpha3.ebuild:
+  drop old
+
+  13 Feb 2011; <fbissey@gentoo.org> sage-baselayout-4.6.1-r1.ebuild,
+  sage-baselayout-4.6.2_alpha4.ebuild:
+  Fix typo
+
+  13 Feb 2011; <fbissey@gentoo.org> sage-baselayout-4.6.1-r1.ebuild,
+  sage-baselayout-4.6.2_alpha4.ebuild:
+  add R-dependency to gdb(-apple) if debug is enabled.
+
+*sage-baselayout-4.6.2_alpha4 (08 Feb 2011)
+
+  08 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-baselayout-4.6.2_alpha4.ebuild:
+  alpha4
+
+*sage-baselayout-4.6.2_alpha3 (30 Jan 2011)
+
+  30 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.6.2_alpha2.ebuild, +sage-baselayout-4.6.2_alpha3.ebuild:
+  alpha3
+
 *sage-baselayout-4.6.2_alpha2 (26 Jan 2011)
 
   26 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>

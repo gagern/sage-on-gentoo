@@ -2,6 +2,98 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Jul 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-examples-4.6.2.ebuild:
+  Drop old
+
+  27 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-examples-4.7_rc0.ebuild:
+  drop old rc
+
+*sage-examples-4.7 (27 May 2011)
+
+  27 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-examples-4.7.ebuild:
+  Version bump
+
+  20 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-examples-4.6.2.ebuild, sage-examples-4.7_rc0.ebuild:
+  Migrate to EAPI 4
+
+  04 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-examples-4.6.1.ebuild:
+  drop old
+
+*sage-examples-4.7_rc0 (26 Apr 2011)
+
+  26 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-examples-4.7_alpha5.ebuild, +sage-examples-4.7_rc0.ebuild:
+  rc0
+
+*sage-examples-4.7_alpha5 (20 Apr 2011)
+
+  20 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-examples-4.7_alpha4.ebuild, +sage-examples-4.7_alpha5.ebuild:
+  alpha5
+
+*sage-examples-4.7_alpha4 (13 Apr 2011)
+
+  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-examples-4.7_alpha3.ebuild, +sage-examples-4.7_alpha4.ebuild:
+  alpha4
+
+*sage-examples-4.7_alpha3 (04 Apr 2011)
+
+  04 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-examples-4.7_alpha2.ebuild, +sage-examples-4.7_alpha3.ebuild:
+  alpha3
+
+  22 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-examples-4.7_alpha1.ebuild, +sage-examples-4.7_alpha2.ebuild:
+  alpha2
+
+*sage-examples-4.7_alpha1 (11 Mar 2011)
+
+  11 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-examples-4.7_alpha1.ebuild, -sage-examples-4.7_alpha2.ebuild:
+  4.7.alpha1
+
+*sage-examples-4.7_alpha2 (02 Mar 2011)
+*sage-examples-4.6.2 (02 Mar 2011)
+
+  02 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-examples-4.6.ebuild, -sage-examples-4.6.2_rc1.ebuild,
+  +sage-examples-4.6.2.ebuild, +sage-examples-4.7_alpha2.ebuild:
+  4.6.2, 4.7.alpha2 drop 4.6
+
+*sage-examples-4.6.2_rc1 (26 Feb 2011)
+
+  26 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-examples-4.6.2_rc0.ebuild, +sage-examples-4.6.2_rc1.ebuild:
+  rc1
+
+*sage-examples-4.6.2_rc0 (18 Feb 2011)
+
+  18 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-examples-4.6.2_alpha4.ebuild, +sage-examples-4.6.2_rc0.ebuild:
+  rc0
+
+  16 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-examples-4.6.2_alpha3.ebuild:
+  drop old
+
+*sage-examples-4.6.2_alpha4 (08 Feb 2011)
+
+  08 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-examples-4.6.2_alpha4.ebuild:
+  alpha4
+
+*sage-examples-4.6.2_alpha3 (30 Jan 2011)
+
+  30 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-examples-4.6.2_alpha2.ebuild, +sage-examples-4.6.2_alpha3.ebuild:
+  alpha3
+
 *sage-examples-4.6.2_alpha2 (26 Jan 2011)
 
   26 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>

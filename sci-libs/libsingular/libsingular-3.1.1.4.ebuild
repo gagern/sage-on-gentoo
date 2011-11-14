@@ -31,7 +31,10 @@ RDEPEND="dev-libs/gmp
 DEPEND="${RDEPEND}
 	dev-lang/perl
 	boost? ( dev-libs/boost )
-	!sci-mathematics/singular[libsingular]"
+	test? (
+		dev-util/cmake
+		dev-util/cppunit
+	)"
 
 S="${WORKDIR}"/${MY_PN}-${MY_DIR}
 
@@ -54,6 +57,12 @@ src_prepare () {
 	fi
 	epatch "${FILESDIR}"/${PN_PATCH}-3.1.1.4-parallelmake.patch
 
+	# fix for certain CFLAGS - see bug #362563
+	epatch "${FILESDIR}"/${PN}-3.1.1.4-fix-ntl.patch
+
+	# TODO: remove ntl directory (?) - use system ntl
+# 	rm -rf ntl || die
+
 	eprefixify kernel/feResource.cc
 	if use prefix ; then
 		sed -i -e "s:-lkernel -L../kernel -L../factory -L../libfac:-lkernel -L../kernel -L../factory -L../libfac -L${EPREFIX}/usr/$(get_libdir):" \
@@ -74,17 +83,6 @@ src_prepare () {
 }
 
 src_configure() {
-	if [[ ${CHOST} == *-darwin10 ]] ; then
-		MACOSX_DEPLOYMENT_TARGET=10.6
-		export MACOSX_DEPLOYMENT_TARGET
-	elif [[ ${CHOST} == *-darwin9 ]] ; then
-		MACOSX_DEPLOYMENT_TARGET=10.5
-		export MACOSX_DEPLOYMENT_TARGET
-	elif [[ ${CHOST} == *-darwin8 ]] ; then
-		MACOSX_DEPLOYMENT_TARGET=10.4
-		export MACOSX_DEPLOYMENT_TARGET
-	fi
-
 	econf \
 		--prefix="${S}"/build \
 		--exec-prefix="${S}"/build \
@@ -164,6 +162,6 @@ pkg_postinst() {
 	einfo "To avoid file collisions with factory and the need of factory to use libsingular"
 	einfo "We have moved the factory headers shipped by singular in /usr/include/singular."
 	einfo "If you want to use the factory functionality offered by libsingular rather than"
-	einfo "the one offered by the factory ebuild you should include sngular/factory.h rather"
+	einfo "the one offered by the factory ebuild you should include singular/factory.h rather"
 	einfo "than just factory.h."
 }

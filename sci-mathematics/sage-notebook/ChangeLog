@@ -2,12 +2,153 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-*sage-notebook-0.8.10-r2 (27 Jan 2011)
+*sage-notebook-0.8.23 (23 Oct 2011)
 
-  27 Jan 2011; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
-  -sage-notebook-0.8.10-r1.ebuild, +sage-notebook-0.8.10-r2.ebuild,
-  +files/sage-notebook-0.8-twistd-python-version.patch:
-  Use twistd script for correct python version.
+  23 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-notebook-0.8.22.ebuild, +sage-notebook-0.8.23.ebuild:
+  bump for sage-4.7.2_rc0
+
+*sage-notebook-0.8.22 (04 Oct 2011)
+
+  04 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-notebook-0.8.21-r1.ebuild, +sage-notebook-0.8.22.ebuild:
+  bump for 4.7.2.alpha3
+
+  25 Sep 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-notebook-0.8.14-r2.ebuild, sage-notebook-0.8.19-r1.ebuild,
+  sage-notebook-0.8.21-r1.ebuild:
+  Depend on sage rather than sage-baselayout for testing
+
+  23 Sep 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.8.14-r2.ebuild, sage-notebook-0.8.19-r1.ebuild,
+  sage-notebook-0.8.21-r1.ebuild:
+  Work on dependencies for test amongst other things.
+
+  22 Sep 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.8.14-r2.ebuild, sage-notebook-0.8.19-r1.ebuild,
+  sage-notebook-0.8.21-r1.ebuild:
+  Try independent testing for sagenb.
+
+*sage-notebook-0.8.21-r1 (02 Sep 2011)
+*sage-notebook-0.8.19-r1 (02 Sep 2011)
+
+  02 Sep 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/trac_9238_jmol_lib_async.patch, -sage-notebook-0.8.19.ebuild,
+  +sage-notebook-0.8.19-r1.ebuild, -sage-notebook-0.8.21.ebuild,
+  +sage-notebook-0.8.21-r1.ebuild:
+  remove offending async patch
+
+  01 Sep 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-notebook-0.8.14-r2.ebuild, sage-notebook-0.8.19.ebuild,
+  sage-notebook-0.8.21.ebuild, metadata.xml:
+  Make USE=java default and document functionality in metadata.xml
+
+  28 Aug 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-notebook-0.8.14-r2.ebuild, sage-notebook-0.8.19.ebuild,
+  sage-notebook-0.8.21.ebuild:
+  Add missing dependency. certtool (gnutls) is needed when starting
+  the notebook with secure connection
+
+*sage-notebook-0.8.21 (24 Aug 2011)
+
+  24 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-notebook-0.8.20.ebuild, +sage-notebook-0.8.21.ebuild:
+  0.8.21 for 4.7.2.alpha2
+
+*sage-notebook-0.8.20 (22 Aug 2011)
+
+  22 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-notebook-0.8.20.ebuild:
+  bump to 0.8.20 (sage-4.7.2.alpha1)
+
+  27 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/trac_9238_script_extension.patch, sage-notebook-0.8.19.ebuild:
+  Put the last patch in the wrong package.
+
+  26 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_9238_script_extension.patch, sage-notebook-0.8.19.ebuild:
+  add a patch for jmol-12.0.45 thx Steve for mentioning it.
+
+*sage-notebook-0.8.19 (05 Jul 2011)
+
+  05 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-notebook-0.8.18.ebuild, +sage-notebook-0.8.19.ebuild:
+  bump to 0.8.19 for 4.7.1_alpha4
+
+  03 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-notebook-0.8.2-add-pidfile-option.patch,
+  -sage-notebook-0.8.14-r1.ebuild:
+  Drop old, clean patches.
+
+  03 Jul 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-notebook-0.8.11-r1.ebuild:
+  Drop old
+
+  03 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_9238_interactive_js.patch, +files/trac_9238_jmol_lib_async.patch,
+  sage-notebook-0.8.18.ebuild:
+  forcing jmol-12.0.45 with new patch from trac 9238
+
+  27 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.8.18.ebuild:
+  Allow latest sage-nb to use jmol-12
+
+*sage-notebook-0.8.18 (24 Jun 2011)
+
+  24 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-notebook-0.8.16.ebuild, +sage-notebook-0.8.18.ebuild:
+  bump for alpha3
+
+*sage-notebook-0.8.14-r2 (03 Jun 2011)
+
+  03 Jun 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-notebook-0.8.14-r2.ebuild, sage-notebook-0.8.16,
+  +files/sage-notebook-0.8.14-fix-secure-connection.patch:
+  Added patch fixing problem with secure connection of notebook. Thanks to
+  Joshua Rich for reporting and providing fix.
+
+*sage-notebook-0.8.16 (31 May 2011)
+*sage-notebook-0.8.14-r1 (31 May 2011)
+
+  31 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-notebook-0.8.14.ebuild, +sage-notebook-0.8.14-r1.ebuild,
+  +sage-notebook-0.8.16.ebuild,
+  +files/sage-notebook-0.8.16-twistd-python-version.patch:
+  Update the twistd patch for sage-4.7+, revbump 0.8.14 for users of multiple
+  python stack
+
+  27 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.8.14.ebuild:
+  move SRC_URI to 4.7
+
+  04 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-notebook-0.7.5.1-fix-deprecated-module.patch,
+  -sage-notebook-0.8.10-r1.ebuild:
+  drop old
+
+  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.8.14.ebuild:
+  darn the twistd patch also needs rebasing.
+
+  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.8.14.ebuild:
+  Remove pid patch from 0.8.14 until it is rebased.
+
+*sage-notebook-0.8.14 (13 Apr 2011)
+
+  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-notebook-0.8.12.ebuild, +sage-notebook-0.8.14.ebuild:
+  bump to 0.8.14 for alpha4
+
+*sage-notebook-0.8.12 (12 Mar 2011)
+
+  12 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-notebook-0.8.12.ebuild:
+  bump for to 0.8.12 for 4.7.alpha1
+
+  02 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-notebook-0.8.7.ebuild, sage-notebook-0.8.11.ebuild:
+  clean up
 
 *sage-notebook-0.8.11 (22 Jan 2011)
 

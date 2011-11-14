@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit base flag-o-matic multilib toolchain-funcs
 
@@ -20,20 +20,21 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
-if  [[ ${CHOST} == *-darwin* ]] ; then
+if [[ ${CHOST} == *-darwin* ]] ; then
 	PATCHES=(
 		"${FILESDIR}"/${PN}-2.1.3-fix-makefile-macos.patch
 		"${FILESDIR}"/${PN}-2.1.3-fix-test-program.patch
 	)
 else
-        PATCHES=(
-                "${FILESDIR}"/${PN}-2.1.3-fix-makefile.patch
-                "${FILESDIR}"/${PN}-2.1.3-fix-test-program.patch
-        )
+	PATCHES=(
+		"${FILESDIR}"/${PN}-2.1.3-fix-makefile.patch
+		"${FILESDIR}"/${PN}-2.1.3-fix-test-program.patch
+	)
 fi
 
 pkg_setup() {
 	append-cflags -fPIC
+
 	if use x86-macos ; then
 		append-cflags -fnested-functions
 	fi
@@ -51,4 +52,3 @@ pkg_setup() {
 	export INSTALL_DIR="${ED}"/usr
 	export LIB_DIR=$(get_libdir)
 }
-

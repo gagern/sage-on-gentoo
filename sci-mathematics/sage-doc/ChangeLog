@@ -2,6 +2,179 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-doc-4.7.2 (05 Nov 2011)
+
+  05 Nov 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-doc-4.7.ebuild, -sage-doc-4.7.1.ebuild, -sage-doc-4.7.2_rc0.ebuild,
+  +sage-doc-4.7.2.ebuild:
+  Version bump. Remove obsoleted versions
+
+*sage-doc-4.7.2_rc0 (23 Oct 2011)
+
+  23 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.7.2_alpha3.ebuild, +sage-doc-4.7.2_rc0.ebuild:
+  4.7.2_rc0
+
+*sage-doc-4.7.2_alpha3 (04 Oct 2011)
+
+  04 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.7.2_alpha2.ebuild, +sage-doc-4.7.2_alpha3.ebuild:
+  4.7.2.alpha3
+
+*sage-doc-4.7.2_alpha2 (24 Aug 2011)
+
+  24 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.7.2_alpha1.ebuild, +sage-doc-4.7.2_alpha2.ebuild:
+  4.7.2.alpha2
+
+*sage-doc-4.7.2_alpha1 (22 Aug 2011)
+
+  22 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-doc-4.7.2_alpha1.ebuild:
+  4.7.2.alpha1
+
+*sage-doc-4.7.1 (17 Aug 2011)
+
+  17 Aug 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-doc-4.7.1_rc0.ebuild, +sage-doc-4.7.1.ebuild:
+  Remove old and add new ebuild
+
+*sage-doc-4.7.1_rc0 (15 Jul 2011)
+
+  15 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.7.1_alpha4.ebuild, +sage-doc-4.7.1_rc0.ebuild:
+  rc0
+
+*sage-doc-4.7.1_alpha4 (04 Jul 2011)
+
+  04 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.7.1_alpha3.ebuild, +sage-doc-4.7.1_alpha4.ebuild:
+  4.7.1_alpha4
+
+  03 Jul 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-doc-4.6.2.ebuild:
+  Drop old
+
+*sage-doc-4.7.1_alpha3 (24 Jun 2011)
+
+  24 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.7.1_alpha2.ebuild, +sage-doc-4.7.1_alpha3.ebuild:
+  alpha3
+
+*sage-doc-4.7.1_alpha2 (09 Jun 2011)
+
+  09 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.7.1_alpha1.ebuild, +sage-doc-4.7.1_alpha2.ebuild:
+  4.7.1.alpha2
+
+*sage-doc-4.7.1_alpha1 (29 May 2011)
+
+  29 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-doc-4.7.1_alpha1.ebuild:
+  4.7.1.alpha1
+
+  27 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.7_rc0.ebuild:
+  remove 4.7_rc0
+
+*sage-doc-4.7 (27 May 2011)
+
+  27 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-doc-4.7.ebuild:
+  Version bump
+
+  20 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-doc-4.6.2.ebuild, sage-doc-4.7_rc0.ebuild:
+  Migrate to EAPI 4
+
+  13 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_9958-fixing_numericalnoise-part3.patch, sage-doc-4.7_rc0.ebuild:
+  python-2.7 doctest fix for 4.7.rc0+
+
+  04 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.6.1.ebuild:
+  drop old
+
+  26 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-doc-scipy-0.8.patch, -files/sage-doc-cvxopt-1.1.2.patch:
+  prune more patches
+
+*sage-doc-4.7_rc0 (26 Apr 2011)
+
+  26 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.7_alpha5.ebuild, +sage-doc-4.7_rc0.ebuild:
+  rc0
+
+*sage-doc-4.7_alpha5 (20 Apr 2011)
+
+  20 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.7_alpha4.ebuild, +sage-doc-4.7_alpha5.ebuild:
+  alpha5
+
+  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/trac_10039_ppl-doc.patch, -sage-doc-4.7_alpha3.ebuild,
+  +sage-doc-4.7_alpha4.ebuild, metadata.xml:
+  Remove experimental flag from metadata
+
+*sage-doc-4.7_alpha4 (13 Apr 2011)
+
+  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/trac_10039_ppl-doc.patch, -sage-doc-4.7_alpha3.ebuild,
+  +sage-doc-4.7_alpha4.ebuild:
+  alpha4
+
+*sage-doc-4.7_alpha3 (04 Apr 2011)
+
+  04 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.7_alpha2.ebuild, +sage-doc-4.7_alpha3.ebuild:
+  alpha3
+
+  22 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.7_alpha1.ebuild, +sage-doc-4.7_alpha2.ebuild:
+  alpha2
+
+*sage-doc-4.7_alpha1 (11 Mar 2011)
+
+  11 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-doc-4.7_alpha1.ebuild, -sage-doc-4.7_alpha2.ebuild:
+  4.7.alpha1
+
+*sage-doc-4.7_alpha2 (02 Mar 2011)
+*sage-doc-4.6.2 (02 Mar 2011)
+
+  02 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.6-r1.ebuild, -sage-doc-4.6.2_rc1.ebuild, +sage-doc-4.6.2.ebuild,
+  +sage-doc-4.7_alpha2.ebuild:
+  4.6.2, 4.7.alpha2 drop 4.6
+
+*sage-doc-4.6.2_rc1 (26 Feb 2011)
+
+  26 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.6.2_rc0.ebuild, +sage-doc-4.6.2_rc1.ebuild:
+  rc1
+
+*sage-doc-4.6.2_rc0 (18 Feb 2011)
+
+  18 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.6.2_alpha4.ebuild, +sage-doc-4.6.2_rc0.ebuild:
+  rc0
+
+  16 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.6.2_alpha3.ebuild:
+  drop old
+
+*sage-doc-4.6.2_alpha4 (08 Feb 2011)
+
+  08 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-doc-4.6.2_alpha4.ebuild:
+  alpha4
+
+*sage-doc-4.6.2_alpha3 (30 Jan 2011)
+
+  30 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.6.2_alpha2.ebuild, +sage-doc-4.6.2_alpha3.ebuild:
+  alpha3
+
   27 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_10039_ppl-doc.patch, sage-doc-4.6.2_alpha2.ebuild, metadata.xml:
   Add experimental flag for 4.6.2.alpha2

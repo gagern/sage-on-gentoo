@@ -2,6 +2,37 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/flint-1.6-enable-ntl.patch:
+  Correct flint-1.6-enable-ntl.patch to not break tests.
+
+  29 Jun 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  flint-1.6.ebuild, files/flint-1.6-enable-ntl.patch,
+  files/flint-1.6-makefile.patch:
+  Respect LDFLAGS
+
+  29 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/flint-1.6-enable-ntl.patch:
+  use CXX instead of CC when using ntl!
+
+*flint-1.6 (26 Jun 2011)
+
+  26 Jun 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +flint-1.6.ebuild, +files/flint-1.6-enable-ntl.patch,
+  +files/flint-1.6-makefile.patch:
+  Version bump
+
+  26 Jun 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  flint-1.5.2.ebuild:
+  Replaced wrong "doins" with "dodoc"
+
+  06 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de> ChangeLog:
+  Migrate to EAPI 4
+
+  23 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  flint-1.5.2.ebuild:
+  Fix flags for tests.
+
   17 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
   files/flint-1.5.1-without-zn_poly.patch, flint-1.5.2.ebuild,
   files/flint-1.5.2-enable-ntl.patch:

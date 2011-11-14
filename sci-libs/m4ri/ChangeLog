@@ -1,6 +1,45 @@
 # ChangeLog for sci-libs/m4ri
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*m4ri-20111004 (15 Oct 2011)
+
+  15 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +m4ri-20111004.ebuild:
+  Bump for 4.7.2
+
+  04 Oct 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  m4ri-20100701.ebuild, m4ri-20100817.ebuild, m4ri-20110613.ebuild,
+  m4ri-20110715.ebuild, m4ri-99999999.ebuild:
+  Fix implicit USE=debug
+
+*m4ri-20110715 (24 Jul 2011)
+
+  24 Jul 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +m4ri-20110715.ebuild:
+  Version bump
+
+*m4ri-99999999 (10 Jul 2011)
+
+  10 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +m4ri-99999999.ebuild:
+  add hot ebuild of m4ri - for testing purpose only
+
+*m4ri-20110613 (28 Jun 2011)
+
+  28 Jun 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +m4ri-20110613.ebuild:
+  Version bump
+
+*m4ri-20100817 (06 May 2011)
+
+  06 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +m4ri-20100817.ebuild:
+  Version bump
+
+  06 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  m4ri-20100701.ebuild:
+  Migrate to EAPI 4
 
   29 Nov 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   m4ri-20100701.ebuild:
