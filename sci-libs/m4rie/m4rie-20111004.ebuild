@@ -4,7 +4,7 @@
 
 EAPI="4"
 
-inherit autotools-utils flag-o-matic
+inherit eutils autotools-utils flag-o-matic
 
 DESCRIPTION="Method of four russian for inversion (M4RI)"
 HOMEPAGE="http://m4ri.sagemath.org/"
@@ -12,15 +12,15 @@ SRC_URI="http://m4ri.sagemath.org/downloads/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="debug openmp sse2 static-libs"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+IUSE="debug openmp static-libs"
 
-RESTRICT="mirror"
+# TODO: tests do not compile since m4rie expects header already being installed
+RESTRICT="mirror test"
 
-DEPEND="openmp? ( >=sys-devel/gcc-4.2[openmp] )"
-RDEPEND=""
-
-DOCS=( AUTHORS README )
+DEPEND="openmp? ( >=sys-devel/gcc-4.2[openmp] )
+	~sci-libs/m4ri-${PV}[openmp?]"
+RDEPEND="~sci-libs/m4ri-${PV}[openmp?]"
 
 pkg_setup() {
 	# TODO: there should be a better way to fix this
@@ -29,13 +29,15 @@ pkg_setup() {
 	fi
 }
 
+src_prepare() {
+	# patch headers to allow out of source build
+	epatch "${FILESDIR}"/${P}-trsm.patch
+}
+
 src_configure() {
-	# cachetune option is not available, because it kills (at least my) X when I
-	# switch from yakuake to desktop
 	myeconfargs=(
 		$(use_enable debug)
 		$(use_enable openmp)
-		$(use_enable sse2)
 	)
 
 	autotools-utils_src_configure

@@ -2,6 +2,82 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-4.8_alpha4.ebuild, +sage-4.8_alpha5.ebuild, -files/modn_givaro.patch:
+  alpha5 + drop patch included upstream
+
+*sage-4.8_alpha5 (30 Dec 2011)
+
+  30 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-4.8_alpha4.ebuild, +sage-4.8_alpha5.ebuild:
+  alpha5
+
+  19 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.8_alpha4.ebuild, +files/trac_9958-32_64bit_messages.patch:
+  Add a missing python 2.7 patch
+
+  16 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.8_alpha4.ebuild:
+  really fix the ipython test
+
+  16 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.8_alpha4.ebuild:
+  fix a doctest
+
+*sage-4.8_alpha4 (13 Dec 2011)
+
+  13 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/12124_eisenstein.patch, +files/trac_9958-fix_randstate.patch,
+  +files/trac_9958-fixing_numericalnoise-part1_p4.patch,
+  +files/trac_9958-nfactor_enumerable_word-randomness.patch,
+  +files/trac_9958-suffix_trees-variations.patch,
+  -files/trac_9958-fixing_numericalnoise-part1_p2.patch,
+  -sage-4.8_alpha3.ebuild, files/trac_9958-mixedfix.patch,
+  +sage-4.8_alpha4.ebuild:
+  alpha4: and update python2.7 patchset
+
+  06 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.8_alpha3.ebuild:
+  Re-order pathes so that they all apply
+
+  06 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/11986_integer_hash-sage.patch, +files/modn_givaro.patch,
+  +files/trac_9958-fix_transcendental.patch,
+  +files/trac_9958-gsl_integration.patch,
+  +files/trac_9958-matrix_mod2e_dense.patch,
+  files/trac_9958-fixing_numericalnoise-part1_p2.patch, sage-4.8_alpha3.ebuild:
+  lots of fixes for alpha3
+
+  05 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.8_alpha3.ebuild:
+  adjust linbox dep for 4.8.alpha3
+
+*sage-4.8_alpha3 (05 Dec 2011)
+
+  05 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_9958-fixing_numericalnoise-part1_p2.patch,
+  -sage-4.8_alpha2.ebuild, +sage-4.8_alpha3.ebuild:
+  alpha3
+
+  28 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.8_alpha2.ebuild:
+  get sage-latex version right and disable mpc (broken) all in 4.8.alpha2
+
+*sage-4.8_alpha2 (28 Nov 2011)
+
+  28 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-4.8_alpha2.ebuild, +files/sage-4.8-dist.py.patch,
+  +files/trac_12041_replace_getslice.patch, +files/sage-4.8-sagestarted.patch:
+  4.8.alpha2
+
+  28 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7-r2.ebuild, sage-4.7.1-r2.ebuild, sage-4.7.2.ebuild:
+  fixing m4ri version dependencies.
+
+  27 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7-r2.ebuild, sage-4.7.1-r2.ebuild, sage-4.7.2.ebuild:
+  fix linbox dep to 1.1.6 as 1.1.7 breaks things
+
 *sage-4.7.2 (05 Nov 2011)
 
   05 Nov 2011; Christopher Schwan <cschwan@students.uni-mainz.de>

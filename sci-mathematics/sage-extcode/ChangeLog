@@ -2,6 +2,30 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-extcode-4.8_alpha5 (30 Dec 2011)
+
+  30 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-extcode-4.8_alpha4.ebuild, +sage-extcode-4.8_alpha5.ebuild:
+  alpha5
+
+*sage-extcode-4.8_alpha4 (13 Dec 2011)
+
+  13 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-extcode-4.8_alpha3.ebuild, +sage-extcode-4.8_alpha4.ebuild:
+  alpha4
+
+*sage-extcode-4.8_alpha3 (05 Dec 2011)
+
+  05 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-extcode-4.8_alpha2.ebuild, +sage-extcode-4.8_alpha3.ebuild:
+  alpha3
+
+*sage-extcode-4.8_alpha2 (28 Nov 2011)
+
+  28 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-extcode-4.8_alpha2.ebuild:
+  4.8.alpha2
+
 *sage-extcode-4.7.2 (05 Nov 2011)
 
   05 Nov 2011; Christopher Schwan <cschwan@students.uni-mainz.de>

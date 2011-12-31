@@ -2,6 +2,41 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  15 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  R-2.14.0.ebuild:
+  more OS X tweaks
+
+  15 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  R-2.14.0.ebuild:
+  more tweaking
+
+  15 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  R-2.14.0.ebuild:
+  more R on OS X stuff - not complete yet
+
+  15 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  R-2.14.0.ebuild:
+  add autotools eclass for OS X
+
+  15 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  R-2.14.0.ebuild:
+  disable R-framework for now
+
+  15 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  R-2.14.0.ebuild:
+  try more tweaks for OS X
+
+  15 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  R-2.14.0.ebuild:
+  rectify some inversion between OS X and non-OS X
+
+*R-2.14.0 (14 Dec 2011)
+
+  14 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/R-2.11.1-parallel.patch, +files/R-2.12.1-ldflags.patch,
+  +files/R-2.13.1-zlib_header_fix.patch, +R-2.14.0.ebuild:
+  Importing R-2.14.0 modified to try to support prefix 
+
   31 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   R-2.10.1-r1.ebuild:
   Force the use of external lapack over internal - avoid installname hell.

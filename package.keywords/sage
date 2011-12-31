@@ -38,9 +38,10 @@ sci-libs/libcliquer
 sci-libs/libsingular
 sci-libs/linbox
 sci-libs/m4ri
-sci-libs/mpfi
+=sci-libs/mpfi-1.4
 sci-libs/pynac
 sci-libs/scipy
+sci-libs/superlu
 sci-libs/symmetrica
 sci-libs/vecmath-objectclub
 sci-libs/zn_poly
