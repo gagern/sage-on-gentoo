@@ -1,0 +1,17 @@
+Link against libstdc++, as required by --no-copy-dt-needed-entries.
+
+References:
+ * https://bugs.gentoo.org/show_bug.cgi?id=472362
+ * https://github.com/cschwan/sage-on-gentoo/issues/230
+
+--- a/config/Makefile.SH	
++++ b/config/Makefile.SH	
+@@ -66,7 +66,7 @@
+   graph=plotQt;;
+ Qt4)
+   PLOTCFLAGS='-D__FANCY_WIN__ `pkg-config --cflags QtGui`'
+-  PLOTLIBS="`pkg-config --libs QtGui`"
++  PLOTLIBS="`pkg-config --libs QtGui` -lstdc++"
+   graph=plotQt4;;
+ fltk)
+   PLOTCFLAGS="`fltk-config --cxxflags` $X11_INC"

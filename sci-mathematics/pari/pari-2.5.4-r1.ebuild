@@ -48,6 +48,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.5.3-slow_determinant.patch
 	# sage trac 13054: polred bug / pari bug 1395
 	epatch "${FILESDIR}"/${PN}-2.5.4-polred.patch
+	# https://bugs.gentoo.org/372079 If you link the Qt interface libstdc++ is needed one way or another.
+	epatch "${FILESDIR}"/${PN}-2.5.4-libstdc++.patch
 
 	# disable default building of docs during install
 	sed -i \
@@ -67,9 +69,6 @@ src_prepare() {
 	sed -i "s:/\(usr\|lib64\):${EPREFIX}/\1:g" \
 		config/get_{Qt,X11,include_path,libpth} \
 		|| die "Failed to fix get_X11"
-
-	# https://bugs.gentoo.org/show_bug.cgi?id=372079 If you link the Qt interface libstdc++ is needed one way or another.
-	sed -i "s:-lQtCore -lQtGui:-lQtCore -lQtGui -lstdc++:" config/get_Qt
 
 	# usersch3.tex is generated
 	rm doc/usersch3.tex || die "failed to remove generated file"
